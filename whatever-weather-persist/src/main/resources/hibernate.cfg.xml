@@ -15,7 +15,7 @@
     <property name="connection.username">sa</property>
     <property name="connection.password"></property>
     <property name="connection.shutdown">true</property>
-    
+    <property name="hibernate.current_session_context_class">thread</property>
     <!-- JDBC connection pool (use the built-in one) -->
     <property name="connection.pool_size">1</property>
     
@@ -32,11 +32,11 @@
     <property name="jdbc.batch_size">0</property>
     
     <!-- List all the mapping documents we're using -->
-    <mapping class="uk.commonline.whatever.model.Atmosphere"/>
-    <mapping class="uk.commonline.whatever.model.Condition"/>
-    <mapping class="uk.commonline.whatever.model.Location"/>
-    <mapping class="uk.commonline.whatever.model.Weather"/>
-    <mapping class="uk.commonline.whatever.model.Wind"/>
+    <mapping class="uk.commonline.weather.model.Atmosphere"/>
+    <mapping class="uk.commonline.weather.model.Condition"/>
+    <mapping class="uk.commonline.weather.model.Location"/>
+    <mapping class="uk.commonline.weather.model.Weather"/>
+    <mapping class="uk.commonline.weather.model.Wind"/>
         
   </session-factory>
 </hibernate-configuration>

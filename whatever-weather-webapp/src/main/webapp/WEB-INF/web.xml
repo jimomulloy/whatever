@@ -43,7 +43,7 @@
   <servlet>
     <servlet-name>simple</servlet-name>
     <servlet-class>
-      uk.commonline.whatever.web.SimpleServlet
+      uk.commonline.weather.web.SimpleServlet
     </servlet-class>
   </servlet>
   

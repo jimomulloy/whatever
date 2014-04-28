@@ -1,30 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:jee="http://www.springframework.org/schema/jee"
-    xmlns:util="http://www.springframework.org/schema/util"
-    xmlns:aop="http://www.springframework.org/schema/aop"
-    xmlns:tx="http://www.springframework.org/schema/tx"
-    xsi:schemaLocation="
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
 	http://www.springframework.org/schema/beans 
-             http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+             http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
         http://www.springframework.org/schema/jee 
-             http://www.springframework.org/schema/jee/spring-jee-2.0.xsd
+             http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
         http://www.springframework.org/schema/util 
-             http://www.springframework.org/schema/util/spring-util-2.0.xsd
+             http://www.springframework.org/schema/util/spring-util-3.2.xsd
         http://www.springframework.org/schema/aop 
-             http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+             http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
         http://www.springframework.org/schema/tx 
-             http://www.springframework.org/schema/tx/spring-tx-2.0.xsd"
-    default-lazy-init="true">
+             http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+        http://www.springframework.org/schema/context 
+             http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/mvc 
+             http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd"
+	default-lazy-init="true">
 
-    <bean id="weatherService" class="uk.commonline.weather.model.WeatherService">
+	<context:component-scan base-package="uk.commonline.weather" />
+
+	<context:annotation-config />
+
+	<tx:annotation-driven />
+
+    <bean id="weatherService" class="uk.commonline.weather.service.WeatherService">
       <property name="yahooRetriever" ref="yahooRetriever"/>
       <property name="yahooParser" ref="yahooParser"/>
+      <property name="weatherDAO" ref="weatherDAO" />
     </bean>    
 
-    <bean id="yahooRetriever" class="uk.commonline.weather.model.YahooRetriever"/>    
+    <bean id="yahooRetriever" class="uk.commonline.weather.service.YahooRetriever"/>    
 
-    <bean id="yahooParser" class="uk.commonline.weather.model.YahooParser"/>    
+    <bean id="yahooParser" class="uk.commonline.weather.service.YahooParser"/>    
 </beans>
