@@ -33,11 +33,11 @@
 	</scm>
 
 	<modules>
-		<module>whatever-command</module>
-		<module>whatever-model</module>
-		<module>whatever-weather</module>
-		<module>whatever-persist</module>
-		<module>whatever-webapp</module>
+		<module>whatever-weather-command</module>
+		<module>whatever-weather-model</module>
+		<module>whatever-weather-service</module>
+		<module>whatever-weather-persist</module>
+		<module>whatever-weather-webapp</module>
 	</modules>
 
 	<reporting>
