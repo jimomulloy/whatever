@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+             http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/jee 
+             http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
+        http://www.springframework.org/schema/util 
+             http://www.springframework.org/schema/util/spring-util-3.2.xsd
+        http://www.springframework.org/schema/aop 
+             http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+        http://www.springframework.org/schema/tx 
+             http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+        http://www.springframework.org/schema/context 
+             http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/mvc 
+             http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd"
+	default-lazy-init="true">
+	
+	<import resource="mvc-view-config.xml" />
+	
+	<context:component-scan base-package="uk.commonline" />
+	
+	<mvc:annotation-driven />
+
+	<!-- all resources inside folder src/main/webapp/resources are mapped so 
+		they can be refered to inside JSP files (see header.jsp for more details) -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+
+	<!-- uses WebJars so Javascript and CSS libs can be declared as Maven dependencies 
+		(Bootstrap, jQuery...) -->
+	<mvc:resources mapping="/webjars/**"
+		location="classpath:/META-INF/resources/webjars/" />
+
+	<mvc:view-controller path="/" view-name="home" />
+
+	<bean id="weatherController" class="uk.commonline.weather.web.WeatherController">
+		<property name="weatherService" ref="weatherService" />
+	</bean>
+
+	<bean id="homeController" class="uk.commonline.weather.web.HomeController">
+	</bean>
+
+	<bean id="loginController" class="uk.commonline.weather.web.LoginController">
+	</bean>
+
+	<bean id="historyController" class="uk.commonline.weather.web.HistoryController">
+		<property name="weatherService" ref="weatherService" />
+		<property name="locationDAO" ref="locationDAO" />
+	</bean>
+
+	<!-- - Message source for this context, loaded from localized "messages_xx" 
+		files. - Files are stored inside src/main/resources -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource"
+		p:basename="messages/messages" />
+
+	<!-- - This bean resolves specific types of exceptions to corresponding 
+		logical - view names for error views. -->
+	<bean
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<!-- view name resolved using bean of type InternalResourceViewResolver 
+			(declared in mvc-view-config.xml) -->
+		<property name="defaultErrorView" value="exception" />
+		<!-- results into 'WEB-INF/jsp/exception.jsp' -->
+		<property name="warnLogCategory" value="warn" />
+		<!-- needed otherwise exceptions won't be logged anywhere -->
+	</bean>
+
+	<!-- you can have more than one handler defined -->
+	<bean id="urlMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="urlMap">
+			<map>
+				<entry key="/weather.x">
+					<ref bean="weatherController" />
+				</entry>
+				<entry key="/history.x">
+					<ref bean="historyController" />
+				</entry>
+				<!--entry key="/login.x"> <ref bean="loginController" /> </entry -->
+			</map>
+		</property>
+	</bean>
+
+</beans>

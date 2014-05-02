@@ -4,7 +4,7 @@ import java.io.InputStream;
 
 import junit.framework.TestCase;
 import uk.commonline.weather.model.Weather;
-import uk.commonline.weather.service.YahooParser;
+import uk.commonline.weather.service.yahoo.YahooParser;
 
 public class YahooParserTest extends TestCase {
 

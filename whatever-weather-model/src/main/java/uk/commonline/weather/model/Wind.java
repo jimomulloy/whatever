@@ -2,48 +2,59 @@ package uk.commonline.weather.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import uk.commonline.data.model.BaseEntity;
+
 @Entity
-public class Wind {
+public class Wind extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String chill;
+	private String direction;
+	private String speed;
 
-    private String chill;
-    private String direction;
-    private String speed;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "weather_id", nullable = false)
+	private Weather weather;
 
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="weather_id", nullable=false)
-    private Weather weather;
+	public Wind() {
+	}
 
-    public Wind() {}
+	public String getChill() {
+		return chill;
+	}
 
-    public Integer getId() { return id; }
-    public void setId(Integer id) { this.id = id; }
+	public void setChill(String newChill) {
+		this.chill = newChill;
+	}
 
-    public String getChill() { return chill; }
-    public void setChill(String newChill) {
-	this.chill = newChill;
-    }
+	public final String getDirection() {
+		return direction;
+	}
 
-    public final String getDirection() { return direction; }
-    public final void setDirection(final String newDirection) {
-	this.direction = newDirection;
-    }
+	public final void setDirection(final String newDirection) {
+		this.direction = newDirection;
+	}
 
-    public final String getSpeed() { return speed; }
-    public final void setSpeed(final String newSpeed) {
-	this.speed = newSpeed;
-    }
-    
-    public Weather getWeather() { return weather; }
-    public void setWeather(Weather weather) { this.weather = weather; }
+	public final String getSpeed() {
+		return speed;
+	}
+
+	public final void setSpeed(final String newSpeed) {
+		this.speed = newSpeed;
+	}
+
+	public Weather getWeather() {
+		return weather;
+	}
+
+	public void setWeather(Weather weather) {
+		this.weather = weather;
+	}
 
 }

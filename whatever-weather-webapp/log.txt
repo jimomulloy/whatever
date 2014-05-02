@@ -1,0 +1,157 @@
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for org.sonatype.mavenbook:whatever-weather-webapp:war:2.0.0-SNAPSHOT
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: javax.servlet:jstl:jar -> duplicate declaration of version (?) @ line 77, column 15
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: javax.servlet.jsp:jsp-api:jar -> duplicate declaration of version (?) @ line 97, column 15
+[WARNING] 'dependencyManagement.dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: javax.servlet.jsp:jsp-api:jar -> version ${jsp.version} vs 2.1 @ org.sonatype.mavenbook:whatever.parent:2.0.0-SNAPSHOT, /home/jim/dev/whatever/pom.xml, line 822, column 16
+[WARNING] 'dependencyManagement.dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.springframework.data:spring-data-jpa:jar -> version 1.2.0.RELEASE vs ${spring-data-jpa.version} @ org.sonatype.mavenbook:whatever.parent:2.0.0-SNAPSHOT, /home/jim/dev/whatever/pom.xml, line 865, column 16
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Whatever Weather -  Web Application 2.0.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] >>> maven-jetty-plugin:6.1.9:run (default-cli) @ whatever-weather-webapp >>>
+[WARNING] The artifact junit:junit-dep:jar:4.11 has been relocated to junit:junit:jar:4.11
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.0:enforce (enforce-versions) @ whatever-weather-webapp ---
+[INFO] 
+[INFO] --- maven-resources-plugin:2.3:resources (default-resources) @ whatever-weather-webapp ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 18 resources
+[INFO] 
+[INFO] --- jacoco-maven-plugin:0.5.10.201208310627:prepare-agent (jacoco-initialize) @ whatever-weather-webapp ---
+[INFO] argLine set to -javaagent:/home/jim/.m2/repository/org/jacoco/org.jacoco.agent/0.5.10.201208310627/org.jacoco.agent-0.5.10.201208310627-runtime.jar=destfile=/home/jim/dev/whatever/whatever-weather-webapp/target/jacoco.exec
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.2:compile (default-compile) @ whatever-weather-webapp ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.3:testResources (default-testResources) @ whatever-weather-webapp ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.2:testCompile (default-testCompile) @ whatever-weather-webapp ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] <<< maven-jetty-plugin:6.1.9:run (default-cli) @ whatever-weather-webapp <<<
+[WARNING] The artifact junit:junit-dep:jar:4.11 has been relocated to junit:junit:jar:4.11
+[INFO] 
+[INFO] --- maven-jetty-plugin:6.1.9:run (default-cli) @ whatever-weather-webapp ---
+[INFO] Configuring Jetty for project: Whatever Weather -  Web Application
+[INFO] Webapp source directory = /home/jim/dev/whatever/whatever-weather-webapp/src/main/webapp
+[INFO] web.xml file = /home/jim/dev/whatever/whatever-weather-webapp/src/main/webapp/WEB-INF/web.xml
+[INFO] Classes = /home/jim/dev/whatever/whatever-weather-webapp/target/classes
+[INFO] Context path = /whatever-weather-webapp
+[INFO] Tmp directory =  determined at runtime
+[INFO] Web defaults = org/mortbay/jetty/webapp/webdefault.xml
+[INFO] Web overrides =  none
+[INFO] Webapp directory = /home/jim/dev/whatever/whatever-weather-webapp/src/main/webapp
+[INFO] Starting jetty 6.1.9 ...
+0    INFO  ContextLoader  - Root WebApplicationContext: initialization started
+54   INFO  XmlWebApplicationContext  - Refreshing Root WebApplicationContext: startup date [Fri May 02 12:23:25 BST 2014]; root of context hierarchy
+86   INFO  XmlBeanDefinitionReader  - Loading XML bean definitions from class path resource [applicationContext-weather.xml]
+358  INFO  XmlBeanDefinitionReader  - Loading XML bean definitions from class path resource [applicationContext-persist.xml]
+551  INFO  DriverManagerDataSource  - Loaded JDBC driver: org.hsqldb.jdbcDriver
+551  INFO  XmlWebApplicationContext  - Bean 'dataSource' of type [class org.springframework.jdbc.datasource.DriverManagerDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+569  INFO  XmlWebApplicationContext  - Bean 'org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter#7496ea20' of type [class org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+586  INFO  LocalContainerEntityManagerFactoryBean  - Building JPA container EntityManagerFactory for persistence unit 'default'
+692  INFO  Version  - HCANN000001: Hibernate Commons Annotations {4.0.1.Final}
+698  INFO  Version  - HHH000412: Hibernate Core {4.2.0.Final}
+700  INFO  Environment  - HHH000206: hibernate.properties not found
+701  INFO  Environment  - HHH000021: Bytecode provider name : javassist
+717  INFO  Ejb3Configuration  - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+753  WARN  Ejb3Configuration  - HHH000193: Overriding hibernate.transaction.factory_class is dangerous, this might break the EJB3 specification implementation
+901  INFO  ConnectionProviderInitiator  - HHH000130: Instantiating explicit connection provider: org.hibernate.ejb.connection.InjectedDataSourceConnectionProvider
+1072 INFO  Dialect  - HHH000400: Using dialect: org.hibernate.dialect.HSQLDialect
+1080 INFO  LobCreatorBuilder  - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+1089 INFO  TransactionFactoryInitiator  - HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+1093 INFO  ASTQueryTranslatorFactory  - HHH000397: Using ASTQueryTranslatorFactory
+1127 INFO  Version  - Hibernate Validator 4.2.0.Final
+1333 INFO  SchemaExport  - HHH000227: Running hbm2ddl schema export
+1339 INFO  SchemaExport  - HHH000230: Schema export complete
+1463 INFO  XmlWebApplicationContext  - Bean 'weatherEmf' of type [class org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+1471 INFO  DefaultListableBeanFactory  - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@7284a177: defining beans [homeController,loginController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,weatherService,yahooRetriever,yahooParser,weatherEmf,dataSource,transactionManager,persistenceExceptionTranslationPostProcessor,locationDAO,weatherDAO,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+1500 INFO  ContextLoader  - Root WebApplicationContext: initialization completed in 1499 ms
+1531 INFO  DispatcherServlet  - FrameworkServlet 'weather': initialization started
+1535 INFO  XmlWebApplicationContext  - Refreshing WebApplicationContext for namespace 'weather-servlet': startup date [Fri May 02 12:23:27 BST 2014]; parent: Root WebApplicationContext
+1536 INFO  XmlBeanDefinitionReader  - Loading XML bean definitions from class path resource [spring/mvc-core-config.xml]
+1607 INFO  XmlBeanDefinitionReader  - Loading XML bean definitions from class path resource [spring/mvc-view-config.xml]
+1670 INFO  DefaultListableBeanFactory  - Overriding bean definition for bean 'homeController': replacing [Generic bean: class [uk.commonline.weather.web.HomeController]; scope=singleton; abstract=false; lazyInit=true; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in file [/home/jim/dev/whatever/whatever-weather-webapp/target/classes/uk/commonline/weather/web/HomeController.class]] with [Generic bean: class [uk.commonline.weather.web.HomeController]; scope=; abstract=false; lazyInit=true; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [spring/mvc-core-config.xml]]
+1670 INFO  DefaultListableBeanFactory  - Overriding bean definition for bean 'loginController': replacing [Generic bean: class [uk.commonline.weather.web.LoginController]; scope=singleton; abstract=false; lazyInit=true; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in file [/home/jim/dev/whatever/whatever-weather-webapp/target/classes/uk/commonline/weather/web/LoginController.class]] with [Generic bean: class [uk.commonline.weather.web.LoginController]; scope=; abstract=false; lazyInit=true; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [spring/mvc-core-config.xml]]
+1725 INFO  DefaultListableBeanFactory  - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@37ee752e: defining beans [org.springframework.web.servlet.view.ContentNegotiatingViewResolver#0,velocityConfig,cnManager,homeController,loginController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,mvcContentNegotiationManager,org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping#0,org.springframework.format.support.FormattingConversionServiceFactoryBean#0,org.springframework.validation.beanvalidation.LocalValidatorFactoryBean#0,org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter#0,org.springframework.web.servlet.handler.MappedInterceptor#0,org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver#0,org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver#0,org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver#0,org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping,org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter,org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter,org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0,org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#0,org.springframework.web.servlet.resource.ResourceHttpRequestHandler#1,org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#1,org.springframework.web.servlet.config.viewControllerHandlerMapping,weatherController,historyController,messageSource,org.springframework.web.servlet.handler.SimpleMappingExceptionResolver#0,urlMapping,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@7284a177
+1815 INFO  VelocityConfigurer  - ClasspathResourceLoader with name 'springMacro' added to configured VelocityEngine
+1958 INFO  RequestMappingHandlerMapping  - Mapped "{[/home],methods=[GET],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public java.lang.String uk.commonline.weather.web.HomeController.home(org.springframework.ui.Model)
+1960 INFO  RequestMappingHandlerMapping  - Mapped "{[/login.x],methods=[GET],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public java.lang.String uk.commonline.weather.web.LoginController.login(org.springframework.ui.Model)
+1960 INFO  RequestMappingHandlerMapping  - Mapped "{[/login.x],methods=[POST],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public java.lang.String uk.commonline.weather.web.LoginController.login(uk.commonline.weather.model.WeatherUserLogin,org.springframework.validation.BindingResult)
+2280 INFO  SimpleUrlHandlerMapping  - Mapped URL path [/resources/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0'
+2281 INFO  SimpleUrlHandlerMapping  - Mapped URL path [/webjars/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#1'
+2294 INFO  SimpleUrlHandlerMapping  - Root mapping to handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2355 INFO  SimpleUrlHandlerMapping  - Mapped URL path [/history.x] onto handler of type [class uk.commonline.weather.web.HistoryController]
+2355 INFO  SimpleUrlHandlerMapping  - Mapped URL path [/weather.x] onto handler of type [class uk.commonline.weather.web.WeatherController]
+2377 INFO  DispatcherServlet  - FrameworkServlet 'weather': initialization completed in 846 ms
+[INFO] Started Jetty Server
+13042 ERROR VelocityEngine  - ResourceManager : unable to find resource 'home.vm' in any resource loader.
+13045 ERROR VelocityEngine  - ResourceManager : unable to find resource 'home.html.vm' in any resource loader.
+15864 INFO  YahooRetriever  - Retrieving Weather Data
+16059 INFO  YahooParser  - Creating XML Reader
+16100 INFO  YahooParser  - Parsing XML Response
+16142 ERROR VelocityEngine  - ResourceManager : unable to find resource 'weather.html.vm' in any resource loader.
+20556 WARN  warn  - Handler execution resulted in exception
+javax.persistence.NoResultException: No entity found for query
+	at org.hibernate.ejb.QueryImpl.getSingleResult(QueryImpl.java:286)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$DeferredQueryInvocationHandler.invoke(SharedEntityManagerCreator.java:310)
+	at com.sun.proxy.$Proxy39.getSingleResult(Unknown Source)
+	at uk.commonline.weather.persist.JpaLocationDAO.findByZip(JpaLocationDAO.java:17)
+	at uk.commonline.weather.web.HistoryController.handleRequest(HistoryController.java:27)
+	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:48)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:925)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:856)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:915)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:811)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:796)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:820)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:487)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:362)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:181)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:726)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:405)
+	at org.mortbay.jetty.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:206)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:324)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:505)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:828)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:514)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:211)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:380)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:395)
+	at org.mortbay.thread.BoundedThreadPool$PoolThread.run(BoundedThreadPool.java:450)
+20559 ERROR VelocityEngine  - ResourceManager : unable to find resource 'exception.vm' in any resource loader.
+20561 ERROR VelocityEngine  - ResourceManager : unable to find resource 'exception.html.vm' in any resource loader.
+28127 INFO  XmlWebApplicationContext  - Closing WebApplicationContext for namespace 'weather-servlet': startup date [Fri May 02 12:23:27 BST 2014]; parent: Root WebApplicationContext
+28131 INFO  DefaultListableBeanFactory  - Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@37ee752e: defining beans [org.springframework.web.servlet.view.ContentNegotiatingViewResolver#0,velocityConfig,cnManager,homeController,loginController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,mvcContentNegotiationManager,org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping#0,org.springframework.format.support.FormattingConversionServiceFactoryBean#0,org.springframework.validation.beanvalidation.LocalValidatorFactoryBean#0,org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter#0,org.springframework.web.servlet.handler.MappedInterceptor#0,org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver#0,org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver#0,org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver#0,org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping,org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter,org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter,org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0,org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#0,org.springframework.web.servlet.resource.ResourceHttpRequestHandler#1,org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#1,org.springframework.web.servlet.config.viewControllerHandlerMapping,weatherController,historyController,messageSource,org.springframework.web.servlet.handler.SimpleMappingExceptionResolver#0,urlMapping,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@7284a177
+28146 INFO  XmlWebApplicationContext  - Closing Root WebApplicationContext: startup date [Fri May 02 12:23:25 BST 2014]; root of context hierarchy
+28148 INFO  DefaultListableBeanFactory  - Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@7284a177: defining beans [homeController,loginController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,weatherService,yahooRetriever,yahooParser,weatherEmf,dataSource,transactionManager,persistenceExceptionTranslationPostProcessor,locationDAO,weatherDAO,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+28150 INFO  LocalContainerEntityManagerFactoryBean  - Closing JPA EntityManagerFactory for persistence unit 'default'
+28151 INFO  SchemaExport  - HHH000227: Running hbm2ddl schema export
+28158 INFO  SchemaExport  - HHH000230: Schema export complete
+[INFO] Jetty server exiting.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 31.472s
+[INFO] Finished at: Fri May 02 12:23:53 BST 2014
+[INFO] Final Memory: 43M/350M
+[INFO] ------------------------------------------------------------------------

@@ -62,7 +62,7 @@ public class Main {
 
 	public void getWeather() throws Exception {
 		Weather weather = weatherService.retrieveForecast(zip);
-		weatherDAO.save( weather );
+		weatherDAO.update( weather );
 		System.out.print(new WeatherFormatter().formatWeather(weather));
 	}
 
