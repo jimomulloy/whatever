@@ -66,6 +66,7 @@ public abstract class AbstractJpaDAO<T extends Serializable> implements Dao<T>{
 	@Override
 	public void update(final T entity) {
 		notNull(entity, clazz.getName() + " can't be null");
+		System.out.println("!Update entity:"+entity);
 		entityManager.merge(entity);
 	}
 

@@ -1,12 +1,15 @@
 package uk.commonline.weather.model;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import uk.commonline.data.model.BaseEntity;
 
+@Table(name="ATMOSPHERE")
 @Entity
 public class Atmosphere extends BaseEntity {
 
@@ -18,14 +21,12 @@ public class Atmosphere extends BaseEntity {
 	private String visibility;
 	private String pressure;
 	private String rising;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "weather_id", nullable = false)
 	private Weather weather;
 
 	public Atmosphere() {
 	}
 
+	@Column(name="HUMIDITY")
 	public final String getHumidity() {
 		return humidity;
 	}
@@ -34,6 +35,7 @@ public class Atmosphere extends BaseEntity {
 		this.humidity = newHumidity;
 	}
 
+	@Column(name="VISIBILITY")
 	public final String getVisibility() {
 		return visibility;
 	}
@@ -42,6 +44,7 @@ public class Atmosphere extends BaseEntity {
 		this.visibility = newVisibility;
 	}
 
+	@Column(name="PRESSURE")
 	public final String getPressure() {
 		return pressure;
 	}
@@ -50,6 +53,7 @@ public class Atmosphere extends BaseEntity {
 		this.pressure = newPressure;
 	}
 
+	@Column(name="RISING")
 	public final String getRising() {
 		return rising;
 	}
@@ -58,6 +62,8 @@ public class Atmosphere extends BaseEntity {
 		this.rising = newRising;
 	}
 
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "WEATHER_ID", nullable = false)
 	public Weather getWeather() {
 		return weather;
 	}

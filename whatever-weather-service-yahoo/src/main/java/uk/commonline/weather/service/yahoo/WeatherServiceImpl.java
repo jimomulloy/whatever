@@ -22,8 +22,8 @@ public class WeatherServiceImpl implements WeatherService {
     @Transactional
 	public Weather updateForecast(String zip) throws Exception {
     	Weather weather = retrieveForecast(zip);
+    	System.out.println("!Update forcast for zip:"+zip);
 		weatherDAO.update(weather);
-
 		return weather;
 	}
     
@@ -64,7 +64,7 @@ public class WeatherServiceImpl implements WeatherService {
 		return weatherDAO;
 	}
 
-	public void setWeatherDAO(WeatherDAO v) {
+	public void setWeatherDAO(WeatherDAO weatherDAO) {
 		this.weatherDAO = weatherDAO;
 	}
 }

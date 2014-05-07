@@ -1,27 +1,37 @@
 package uk.commonline.weather.model;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import uk.commonline.data.model.BaseEntity;
 
+@Table(name="WEATHERCONDITION")
 @Entity
 public class Condition extends BaseEntity {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String text;
 	private String code;
 	private String temp;
-	private String date;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "weather_id", nullable = false)
+	private Date date;
+	
 	private Weather weather;
 
 	public Condition() {
 	}
 
+	@Column(name="TEXT")
 	public String getText() {
 		return text;
 	}
@@ -30,6 +40,7 @@ public class Condition extends BaseEntity {
 		this.text = newText;
 	}
 
+	@Column(name="CODE")
 	public String getCode() {
 		return code;
 	}
@@ -38,6 +49,7 @@ public class Condition extends BaseEntity {
 		this.code = newCode;
 	}
 
+	@Column(name="TEMP")
 	public String getTemp() {
 		return temp;
 	}
@@ -45,15 +57,19 @@ public class Condition extends BaseEntity {
 	public void setTemp(String newTemp) {
 		this.temp = newTemp;
 	}
-
-	public String getDate() {
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name="DATE")
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String newDate) {
+	public void setDate(Date newDate) {
 		this.date = newDate;
 	}
 
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "WEATHER_ID", nullable = false)
 	public Weather getWeather() {
 		return weather;
 	}

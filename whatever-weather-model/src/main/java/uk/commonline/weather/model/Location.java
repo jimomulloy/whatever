@@ -2,11 +2,14 @@ package uk.commonline.weather.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
+@Table(name="LOCATION")
 @Entity
 @NamedQueries({ @NamedQuery(name = "Location.uniqueByZip", query = "from Location l where l.zip = :zip") })
 public class Location implements Serializable {
@@ -16,7 +19,6 @@ public class Location implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Id
 	private String zip;
 
 	private String city;
@@ -26,6 +28,8 @@ public class Location implements Serializable {
 	public Location() {
 	}
 
+	@Id
+	@Column(name="ZIP")
 	public String getZip() {
 		return zip;
 	}
@@ -34,6 +38,7 @@ public class Location implements Serializable {
 		this.zip = zip;
 	}
 
+	@Column(name="CITY")
 	public String getCity() {
 		return city;
 	}
@@ -42,6 +47,7 @@ public class Location implements Serializable {
 		this.city = city;
 	}
 
+	@Column(name="REGION")
 	public String getRegion() {
 		return region;
 	}
@@ -50,6 +56,7 @@ public class Location implements Serializable {
 		this.region = region;
 	}
 
+	@Column(name="COUNTRY")
 	public String getCountry() {
 		return country;
 	}

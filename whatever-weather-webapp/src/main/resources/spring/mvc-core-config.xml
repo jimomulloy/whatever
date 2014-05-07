@@ -21,11 +21,11 @@
         http://www.springframework.org/schema/mvc 
              http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd"
 	default-lazy-init="true">
-	
+
 	<import resource="mvc-view-config.xml" />
-	
+
 	<context:component-scan base-package="uk.commonline" />
-	
+
 	<mvc:annotation-driven />
 
 	<!-- all resources inside folder src/main/webapp/resources are mapped so 
@@ -36,22 +36,12 @@
 		(Bootstrap, jQuery...) -->
 	<mvc:resources mapping="/webjars/**"
 		location="classpath:/META-INF/resources/webjars/" />
-
+	
+	<mvc:resources mapping="/public/**" location="classpath:/public/"/>
+	
 	<mvc:view-controller path="/" view-name="home" />
 
-	<bean id="weatherController" class="uk.commonline.weather.web.WeatherController">
-		<property name="weatherService" ref="weatherService" />
-	</bean>
-
-	<bean id="homeController" class="uk.commonline.weather.web.HomeController">
-	</bean>
-
 	<bean id="loginController" class="uk.commonline.weather.web.LoginController">
-	</bean>
-
-	<bean id="historyController" class="uk.commonline.weather.web.HistoryController">
-		<property name="weatherService" ref="weatherService" />
-		<property name="locationDAO" ref="locationDAO" />
 	</bean>
 
 	<!-- - Message source for this context, loaded from localized "messages_xx" 
@@ -73,7 +63,7 @@
 	</bean>
 
 	<!-- you can have more than one handler defined -->
-	<bean id="urlMapping"
+	<!--bean id="urlMapping"
 		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="urlMap">
 			<map>
@@ -83,9 +73,8 @@
 				<entry key="/history.x">
 					<ref bean="historyController" />
 				</entry>
-				<!--entry key="/login.x"> <ref bean="loginController" /> </entry -->
 			</map>
 		</property>
-	</bean>
+	</bean-->
 
 </beans>
