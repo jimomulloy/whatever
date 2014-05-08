@@ -6,11 +6,22 @@
 		<artifactId>whatever-parent</artifactId>
 		<version>2.0.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>whatever-common</artifactId>
+	<artifactId>whatever-weather-persist-service</artifactId>
 	<packaging>jar</packaging>
 
-	<name>Whatever - Common code</name>
+	<name>Whatever Weather -  Weather Persistence Service API</name>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>whatever-weather-model</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>whatever-weather-persist</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
 </project>

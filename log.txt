@@ -1,9 +1,9 @@
 [INFO] Scanning for projects...
 [WARNING] 
-[WARNING] Some problems were encountered while building the effective model for org.sonatype.mavenbook:whatever-weather-service-yahoo:jar:2.0.0-SNAPSHOT
+[WARNING] Some problems were encountered while building the effective model for uk.commonline.whatever:whatever-weather-service-yahoo:jar:2.0.0-SNAPSHOT
 [WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: dom4j:dom4j:jar -> duplicate declaration of version 1.6.1 @ line 90, column 15
 [WARNING] 
-[WARNING] Some problems were encountered while building the effective model for org.sonatype.mavenbook:whatever-weather-webapp:war:2.0.0-SNAPSHOT
+[WARNING] Some problems were encountered while building the effective model for uk.commonline.whatever:whatever-weather-webapp:war:2.0.0-SNAPSHOT
 [WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: javax.servlet:jstl:jar -> duplicate declaration of version (?) @ line 77, column 15
 [WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: javax.servlet.jsp:jsp-api:jar -> duplicate declaration of version (?) @ line 97, column 15
 [WARNING] 

@@ -6,10 +6,10 @@
 		<artifactId>whatever-parent</artifactId>
 		<version>2.0.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>whatever-common</artifactId>
+	<artifactId>whatever-data-service</artifactId>
 	<packaging>jar</packaging>
 
-	<name>Whatever - Common code</name>
+	<name>Whatever - Data Service API</name>
 
 	<dependencies>
 	</dependencies>

@@ -12,12 +12,13 @@ import uk.commonline.weather.model.WeatherUserLogin;
 import uk.commonline.weather.service.WeatherService;
 
 @Controller
+@RequestMapping(value = "/home")
 public class HomeController {
 
 	@Inject
 	private WeatherService weatherService;
 
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	//@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String showHomePage(Map<String, Object> model) {
 		WeatherUserLogin weatherUser = new WeatherUserLogin();
 		model.put("weatherUser", weatherUser);

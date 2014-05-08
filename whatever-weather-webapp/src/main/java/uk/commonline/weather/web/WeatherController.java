@@ -13,12 +13,13 @@ import uk.commonline.weather.model.Weather;
 import uk.commonline.weather.service.WeatherService;
 
 @Controller
+@RequestMapping(value = "/weather")
 public class WeatherController {
 
 	@Inject
 	private WeatherService weatherService;
 
-	@RequestMapping(value = "/weather", method = RequestMethod.GET)
+	//@RequestMapping(value = "/weather", method = RequestMethod.GET)
 	public ModelAndView handleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
