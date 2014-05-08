@@ -19,7 +19,7 @@ java.lang.NoClassDefFoundError: org/apache/log/format/Formatter
 	at org.apache.velocity.app.Velocity.evaluate(Velocity.java:274)
 	at uk.commonline.weather.model.WeatherFormatter.format(WeatherFormatter.java:21)
 	at uk.commonline.weather.model.WeatherService.retrieveForecast(WeatherService.java:17)
-	at uk.commonline.whatever.web.WeatherServlet.doGet(WeatherServlet.java:16)
+	at uk.commonline.weather.web.WeatherServlet.doGet(WeatherServlet.java:16)
 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:820)
 	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:487)
