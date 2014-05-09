@@ -132,6 +132,7 @@
 		<module>whatever-weather-service-yahoo</module>
 		<module>whatever-weather-command</module>
 		<module>whatever-weather-webapp</module>
+		<module>whatever-weather-deploy</module>
 	</modules>
 
 	<reporting>
