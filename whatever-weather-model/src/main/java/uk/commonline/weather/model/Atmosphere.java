@@ -7,10 +7,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+//import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import uk.commonline.data.model.BaseEntity;
 
 @Table(name="ATMOSPHERE")
 @Entity
+//@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Atmosphere extends BaseEntity {
 
 	/**

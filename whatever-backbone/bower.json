@@ -1,0 +1,25 @@
+{
+  "name": "whatever-backbone",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jimomulloy/whatever",
+  "authors": [
+    "jimomulloy <jimomulloy@gmail.com>"
+  ],
+  "description": "whatever backbone",
+  
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone-amd": "~1",
+    "curl": "~0.8",
+    "jquery": "~2",
+    "lodash": "~1"
+  }
+}

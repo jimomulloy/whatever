@@ -1,7 +1,11 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>7</version>
+	</parent>
 	<groupId>uk.commonline.whatever</groupId>
 	<artifactId>whatever-parent</artifactId>
 	<version>2.0.0-SNAPSHOT</version>
@@ -32,6 +36,12 @@
 		<hibernate.annotations.version>4.1.8.Final</hibernate.annotations.version>
 		<spring.version>3.2.0.RELEASE</spring.version>
 		<spring-data-jpa.version>1.3.0.RELEASE</spring-data-jpa.version>
+		<spring.amqp.version>1.0.0.RELEASE</spring.amqp.version>
+		<spring.data.commons.version>1.4.0.RC1</spring.data.commons.version>
+		<spring.data.mongodb.version>1.1.0.RELEASE</spring.data.mongodb.version>
+		<spring.data.rest.webmvc.version>1.0.0.RC3</spring.data.rest.webmvc.version>
+		<spring.integration.version>2.1.3.RELEASE</spring.integration.version>
+		<spring.security.version>3.0.3.RELEASE</spring.security.version>
 		<slf4j.version>1.7.4</slf4j.version>
 		<h2.version>1.3.166</h2.version>
 
@@ -78,7 +88,7 @@
 		<maven-install-plugin.version>2.4</maven-install-plugin.version>
 		<maven-jar-plugin.version>2.4</maven-jar-plugin.version>
 		<maven-javadoc-plugin.version>2.9</maven-javadoc-plugin.version>
-		<maven-jetty-plugin.version>8.1.9.v20130131</maven-jetty-plugin.version>
+		<maven-jetty-plugin.version>9.1.3.v20140225</maven-jetty-plugin.version>
 		<maven-m2e-lifecycle-plugin.version>1.0.0</maven-m2e-lifecycle-plugin.version>
 		<maven-plugin-plugin.version>3.2</maven-plugin-plugin.version>
 		<maven-project-info-reports-plugin.version>2.6</maven-project-info-reports-plugin.version>
@@ -95,7 +105,7 @@
 		<mysql.version>5.1.23</mysql.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		
+
 		<thucydides.version>0.9.22</thucydides.version>
 
 	</properties>
@@ -131,9 +141,12 @@
 		<!-- module>whatever-weather-persist-hibernate</module -->
 		<module>whatever-weather-service-yahoo</module>
 		<module>whatever-weather-command</module>
-		<module>whatever-weather-webapp</module>
+		<module>whatever-weather-jaxrs</module>
+		<!-- module>whatever-weather-webapp</module -->
+		<module>whatever-weather-web</module>
 		<module>whatever-weather-deploy</module>
-	</modules>
+		<!--module>whatever-backbone</module-->
+  </modules>
 
 	<reporting>
 		<plugins>
@@ -273,7 +286,7 @@
 	</repositories>
 
 	<build>
-		<finalName>wtw-${project.version}</finalName>
+		<finalName>wtw</finalName>
 		<defaultGoal>install</defaultGoal>
 		<plugins>
 
@@ -318,23 +331,10 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<configuration>
-					<descriptorRefs>
-						<descriptorRef>project</descriptorRef>
-					</descriptorRefs>
-				</configuration>
-				<executions>
-					<execution>
-						<id>examples</id>
-						<phase>package</phase>
-						<goals>
-							<goal>attached</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+			<!--plugin> <artifactId>maven-assembly-plugin</artifactId> <configuration> 
+				<descriptorRefs> <descriptorRef>project</descriptorRef> </descriptorRefs> 
+				</configuration> <executions> <execution> <id>examples</id> <phase>package</phase> 
+				<goals> <goal>attached</goal> </goals> </execution> </executions> </plugin -->
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.2</version>
@@ -651,6 +651,19 @@
 							<pluginExecutions>
 								<pluginExecution>
 									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-enforcer-plugin</artifactId>
+										<versionRange>[1.0.0,)</versionRange>
+										<goals>
+											<goal>enforce</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore/>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
 										<groupId>org.jacoco</groupId>
 										<artifactId>
 											jacoco-maven-plugin
@@ -663,7 +676,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore />
+										<ignore/>
 									</action>
 								</pluginExecution>
 							</pluginExecutions>
@@ -1128,6 +1141,119 @@
 				<artifactId>spring-security-taglibs</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-mongodb</artifactId>
+				<version>${spring.data.mongodb.version}</version>
+			</dependency>
+
+			<!-- Spring Integration dependencies -->
+			<dependency>
+				<groupId>org.springframework.integration</groupId>
+				<artifactId>spring-integration-core</artifactId>
+				<version>${spring.integration.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-aop</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-context</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.integration</groupId>
+				<artifactId>spring-integration-amqp</artifactId>
+				<version>${spring.integration.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-tx</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.integration</groupId>
+				<artifactId>spring-integration-http</artifactId>
+				<version>${spring.integration.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.integration</groupId>
+				<artifactId>spring-integration-mail</artifactId>
+				<version>${spring.integration.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.integration</groupId>
+				<artifactId>spring-integration-xml</artifactId>
+				<version>${spring.integration.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-context</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-oxm</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework.ws</groupId>
+						<artifactId>spring-xml</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.integration</groupId>
+				<artifactId>spring-integration-xmpp</artifactId>
+				<version>${spring.integration.version}</version>
+			</dependency>
+			<!-- <dependency> -->
+			<!-- <groupId>org.springframework.integration</groupId> -->
+			<!-- <artifactId>spring-integration-ws</artifactId> -->
+			<!-- <version>${spring.integration.version}</version> -->
+			<!-- </dependency> -->
+
+			<!-- Spring Web Services dependencies -->
+			<dependency>
+				<groupId>org.springframework.ws</groupId>
+				<artifactId>org.springframework.ws</artifactId>
+				<version>1.5.9.A</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework.ws</groupId>
+						<artifactId>org.springframework.oxm</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<!-- Spring AMQP -->
+			<dependency>
+				<groupId>org.springframework.amqp</groupId>
+				<artifactId>spring-rabbit</artifactId>
+				<version>${spring.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-core</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-tx</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<!-- AspectJ dependencies -->
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>com.springsource.org.aspectj.runtime</artifactId>
+				<version>${aspectj.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>com.springsource.org.aspectj.weaver</artifactId>
+				<version>${aspectj.version}</version>
+			</dependency>
+
 			<dependency>
 				<groupId>com.googlecode.flyway</groupId>
 				<artifactId>flyway-core</artifactId>

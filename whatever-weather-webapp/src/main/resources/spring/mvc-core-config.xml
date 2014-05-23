@@ -39,7 +39,7 @@
 	
 	<mvc:resources mapping="/public/**" location="classpath:/public/"/>
 	
-	<mvc:view-controller path="/" view-name="home" />
+	<!--mvc:view-controller path="/" view-name="home" /-->
 
 	<bean id="loginController" class="uk.commonline.weather.web.LoginController">
 	</bean>
