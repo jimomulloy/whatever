@@ -7,8 +7,8 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-<link rel="stylesheet" href="styles/f40ba8e3.main.css">
-<script src="scripts/vendor/a52a8685.modernizr.js"></script>
+<link rel="stylesheet" href="styles/main.css"/>
+<script src="scripts/vendor/modernizr.js"></script>
 
 	<script type="text/html" id="hello-template">
 		<p>The ID is <%= id %></p>
@@ -110,6 +110,16 @@
             ga('create','UA-XXXXX-X');ga('send','pageview');
         </script>
 
-	<script src="scripts/4b767e28.main.js"></script>
+	    <!--script src="bower_components/requirejs/require.js"></script>
+	      <script src="scripts/main.js"></script-->
+	<!--script data-main="scripts/main"
+		src="bower_components/requirejs/require.js"></script-->
+		
+		<!-- REMOVE THIS AFTER `grunt build` -->
+	<script data-main="scripts/main" src="bower_components/requirejs/require.js"></script>
+
+<!-- UNCOMMENT THIS AFTER `grunt build` -->
+<!-- <script src="scripts/app.min.js"></script> -->
+
 </body>
 </html>
