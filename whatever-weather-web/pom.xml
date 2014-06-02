@@ -158,9 +158,9 @@
 						<fileset>
 							<directory>yo/app/components</directory>
 						</fileset>
-						<!--fileset> 
+						<fileset> 
 							<directory>yo/node_modules</directory> 
-						</fileset-->
+						</fileset>
 					</filesets>
 				</configuration>
 			</plugin>
