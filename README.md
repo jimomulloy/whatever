@@ -1,17 +1,43 @@
 # Whatever The Weather Demo Application
 
+##Comments based on http://spring-petclinic.cloudfoundry.com/
+
+##What is it
+A demo application supporting a variety of cloud based weather services.
+
+##Why
+As a calling card to support furutre job applications and as an exercise in exploring and learning about a variety of service oriented application design principles.
+
+##Based on
+1. The Weather app used in Maven: The Definitive Guide (OReilly)
+2. The CI examples in Jenkins: The Definitive Guide (OReilly)
+3. ....
+
+##Architectural principles
+1. Modularity.
+2. Encapsulation, separation of concerns, Loose coupling.
+3. Flexible, Extensible.
+4. Distributed processing
+5. Asynchronous processing
+6. Variety of front ends, web, mobile, desktop
+7. SOA, Web Services
+8. Cloud deployment.
+9. Continuous Integration, build, test, (unit, integration, UAT, performance, smoke test,) deploy.
+10. Source code management with GIT, branches and master development.
+11. Architect for OSGi.
+
 ## What does it look like?
-spring-petclinic has been deployed here on cloudfoundry: http://spring-petclinic.cloudfoundry.com/
+wtw will be deployed here on aws: http://54.72.213.202:8080/wtw
 
-## Running petclinic locally
+## Running wtw locally
 ```
-	git clone https://github.com/SpringSource/spring-petclinic.git
-	mvn tomcat7:run
+	git clone https://github.com/jimomulloy/whatever.git
+	mvn jersey:run
 ```
 
-You can then access petclinic here: http://localhost:9966/petclinic/
+You can then access wtw here: http://localhost:8080/wtw/
 
-## Working with Petclinic in Eclipse/STS
+## Working with WTW in Eclipse/STS
 
 ### prerequisites
 The following items should be installed in your system:
@@ -27,7 +53,7 @@ If m2e is not there, just follow the install process here: http://eclipse.org/m2
 
 In the command line
 ```
-git clone https://github.com/SpringSource/spring-petclinic.git
+git clone https://github.com/jimomulloy/whatever.git
 ```
 Inside Eclipse: 
 ```
@@ -36,39 +62,3 @@ File -> Import -> Maven -> Existing Maven project
 
 
 ## Looking for something in particular?
-
-<table>
-  <tr>
-    <th>Web layer</th><th>Files</th>
-  </tr>
-  <tr>
-    <td>Spring MVC- Atom integration</td>
-    <td>
-      <a href="/SpringSource/spring-petclinic/blob/master/src/main/java/org/springframework/samples/petclinic/web/VisitsAtomView.java">VisitsAtomView</a>
-      <a href="/SpringSource/spring-petclinic/blob/master/src/main/webapp/WEB-INF/mvc-view-config.xml">mvc-view-config.xml</a>
-    </td>
-  </tr>
-  <tr>
-    <td>Spring MVC - XML integration</td>
-    <td><a href="/SpringSource/spring-petclinic/blob/master/src/main/webapp/WEB-INF/mvc-view-config.xml">mvc-view-config.xml</a></td>
-  </tr>
-  <tr>
-    <td>Spring MVC Test Framework</td>
-    <td><a href="/SpringSource/spring-petclinic/blob/master/src/test/java/org/springframework/samples/petclinic/web/VisitsAtomViewTest.java">VisitsAtomViewTest.java</a></td>
-  </tr>
-  <tr>
-    <td>JSP custom tags</td>
-    <td>
-      <a href="/SpringSource/spring-petclinic/tree/master/src/main/webapp/WEB-INF/tags">WEB-INF/tags</a></td>
-  </tr>
-  <tr>
-    <td>webjars</td>
-    <td>
-      <a href="/SpringSource/spring-petclinic/tree/master/pom.xml#L171">webjars declaration inside pom.xml</a> <br />
-      <a href="/SpringSource/spring-petclinic/blob/master/src/main/webapp/WEB-INF/mvc-core-config.xml#L24">Resource mapping in Spring configuration</a> <br />
-      <a href="/SpringSource/spring-petclinic/blob/master/src/main/webapp/WEB-INF/jsp/fragments/headTag.jsp#L12">sample usage in JSP</a></td>
-    </td>
-  </tr>
-</table>
-
-
