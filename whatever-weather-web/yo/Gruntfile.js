@@ -311,6 +311,12 @@ module.exports = function (grunt) {
         }
     });
 
+    grunt.registerTask('default', [
+        'jshint',
+        'test',
+        'build'
+    ]);
+    
     grunt.registerTask('createDefaultTemplate', function () {
         grunt.file.write('.tmp/scripts/templates.js', 'this.JST = this.JST || {};');
     });
@@ -388,9 +394,4 @@ module.exports = function (grunt) {
     
     ]);
 
-    grunt.registerTask('default', [
-        'jshint',
-        'test',
-        'build'
-    ]);
 };
