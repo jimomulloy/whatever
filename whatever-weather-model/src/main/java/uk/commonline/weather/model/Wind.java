@@ -35,20 +35,20 @@ public class Wind extends BaseEntity {
 	}
 
 	@Column(name="DIRECTION")
-	public final String getDirection() {
+	public  String getDirection() {
 		return direction;
 	}
 
-	public final void setDirection(final String newDirection) {
+	public  void setDirection( String newDirection) {
 		this.direction = newDirection;
 	}
 
 	@Column(name="SPEED")
-	public final String getSpeed() {
+	public  String getSpeed() {
 		return speed;
 	}
 
-	public final void setSpeed(final String newSpeed) {
+	public  void setSpeed( String newSpeed) {
 		this.speed = newSpeed;
 	}
 

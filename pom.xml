@@ -144,7 +144,7 @@
 		<!--module>whatever-weather-command</module -->
 		<!--module>whatever-weather-jaxrs</module -->
 		<!-- module>whatever-weather-web</module -->
-		<!--module>whatever-weather-deploy</module -->
+		<module>whatever-weather-deploy</module>
 		<!--module>whatever-backbone</module -->
 	</modules>
 

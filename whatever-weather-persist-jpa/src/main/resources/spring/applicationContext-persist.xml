@@ -35,7 +35,7 @@
 		file -->
 	<!-- (in this case, JDBC-related settings for the dataSource definition 
 		below) -->
-	<context:property-placeholder location="classpath:spring/jdbc.properties" />
+	<context:property-placeholder location="classpath:spring/${ENV_SYSTEM:dev}/jdbc.properties" />
 
 	<!-- DataSource configuration for Tomcat JDBC -->
 	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"

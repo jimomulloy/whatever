@@ -30,38 +30,38 @@ public class Atmosphere extends BaseEntity {
 	}
 
 	@Column(name="HUMIDITY")
-	public final String getHumidity() {
+	public String getHumidity() {
 		return humidity;
 	}
 
-	public final void setHumidity(final String newHumidity) {
+	public void setHumidity( String newHumidity) {
 		this.humidity = newHumidity;
 	}
 
 	@Column(name="VISIBILITY")
-	public final String getVisibility() {
+	public String getVisibility() {
 		return visibility;
 	}
 
-	public final void setVisibility(final String newVisibility) {
+	public void setVisibility( String newVisibility) {
 		this.visibility = newVisibility;
 	}
 
 	@Column(name="PRESSURE")
-	public final String getPressure() {
+	public String getPressure() {
 		return pressure;
 	}
 
-	public final void setPressure(final String newPressure) {
+	public void setPressure( String newPressure) {
 		this.pressure = newPressure;
 	}
 
 	@Column(name="RISING")
-	public final String getRising() {
+	public String getRising() {
 		return rising;
 	}
 
-	public final void setRising(final String newRising) {
+	public void setRising( String newRising) {
 		this.rising = newRising;
 	}
 

@@ -24,7 +24,7 @@ public class Weather extends BaseEntity {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static long serialVersionUID = 1L;
 
 	private Location location;
 
@@ -50,11 +50,11 @@ public class Weather extends BaseEntity {
 	}
 
 	@OneToOne(mappedBy = "weather", cascade = CascadeType.ALL)
-	public final Condition getCondition() {
+	public Condition getCondition() {
 		return condition;
 	}
 
-	public final void setCondition(final Condition newCondition) {
+	public void setCondition(Condition newCondition) {
 		this.condition = newCondition;
 	}
 
