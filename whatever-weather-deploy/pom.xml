@@ -18,7 +18,7 @@
 				<version>1.0.1</version>
 				<configuration>
 					<container>
-						<containerId>tomcat7x</containerId>
+						<containerId>tomcat6x</containerId>
 						<type>remote</type>
 					</container>
 					<configuration>
