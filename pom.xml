@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
@@ -137,16 +138,15 @@
 		<module>whatever-weather-service</module>
 		<module>whatever-weather-persist</module>
 		<module>whatever-weather-persist-service</module>
-		<module>whatever-weather-persist-jpa</module>
+		<!--module>whatever-weather-persist-jpa</module -->
 		<!-- module>whatever-weather-persist-hibernate</module -->
 		<module>whatever-weather-service-yahoo</module>
-		<module>whatever-weather-command</module>
-		<module>whatever-weather-jaxrs</module>
-		<!-- module>whatever-weather-webapp</module -->
-		<module>whatever-weather-web</module>
-		<module>whatever-weather-deploy</module>
-		<!--module>whatever-backbone</module-->
-  </modules>
+		<!--module>whatever-weather-command</module -->
+		<!--module>whatever-weather-jaxrs</module -->
+		<!-- module>whatever-weather-web</module -->
+		<!--module>whatever-weather-deploy</module -->
+		<!--module>whatever-backbone</module -->
+	</modules>
 
 	<reporting>
 		<plugins>
@@ -289,7 +289,10 @@
 		<finalName>wtw</finalName>
 		<defaultGoal>install</defaultGoal>
 		<plugins>
-
+			<!--plugin> <groupId>org.liquibase</groupId> <artifactId>liquibase-maven-plugin</artifactId> 
+				<version>3.0.5</version> <configuration> <propertyFileWillOverride>true</propertyFileWillOverride> 
+				<propertyFile>target/classes/liquibase.properties</propertyFile> </configuration> 
+				</plugin -->
 			<!-- gDickens: Include the Builders and Natures -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -651,6 +654,19 @@
 							<pluginExecutions>
 								<pluginExecution>
 									<pluginExecutionFilter>
+										<groupId>org.liquibase</groupId>
+										<artifactId>liquibase-maven-plugin</artifactId>
+										<versionRange>[1.0.0,)</versionRange>
+										<goals>
+											<goal>update</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
 										<groupId>org.apache.maven.plugins</groupId>
 										<artifactId>maven-enforcer-plugin</artifactId>
 										<versionRange>[1.0.0,)</versionRange>
@@ -659,7 +675,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore/>
+										<ignore />
 									</action>
 								</pluginExecution>
 								<pluginExecution>
@@ -676,7 +692,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore/>
+										<ignore />
 									</action>
 								</pluginExecution>
 							</pluginExecutions>
@@ -763,7 +779,7 @@
 				<groupId>mysql</groupId>
 				<artifactId>mysql-connector-java</artifactId>
 				<version>${mysql.version}</version>
-				<scope>runtime</scope>
+				<!--scope>runtime</scope -->
 			</dependency>
 
 			<dependency>

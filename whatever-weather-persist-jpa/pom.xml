@@ -56,7 +56,11 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-maven-plugin</artifactId>
+			<version>3.0.5</version>
+		</dependency>
 		<!-- DataSource -->
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
@@ -67,7 +71,72 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
+			<version>5.1.23</version>
+			<!--scope>runtime</scope -->
 		</dependency>
 	</dependencies>
+
+	<build>
+
+		<filters>
+			<filter>src/main/filters/filter.properties</filter>
+		</filters>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>3.0.5</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>update</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<changeLogFile>src/main/resources/db/mysql/db.changelog.xml</changeLogFile>
+					<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+					<changeLogFile>${liquibase.change.log}</changeLogFile>
+					<driver>${liquibase.driver}</driver>
+					<url>${liquibase.url}</url>
+					<username>${liquibase.username}</username>
+					<password>${liquibase.password}</password>
+					<!--propertyFile>src/main/resources/liquibase.properties</propertyFile -->
+					<!--propertyFile>target/classes/liquibase.properties</propertyFile -->
+					<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>mysql</groupId>
+						<artifactId>mysql-connector-java</artifactId>
+						<version>5.1.23</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>database</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<liquibase.change.log>db/mysql/db.changelog.xml</liquibase.change.log>
+				<liquibase.url>jdbc:mysql://localhost:3306/wtw</liquibase.url>
+				<liquibase.driver>com.mysql.jdbc.Driver</liquibase.driver>
+				<liquibase.username>root</liquibase.username>
+				<liquibase.password>root</liquibase.password>
+			</properties>
+		</profile>
+	</profiles>
 </project>

@@ -18,7 +18,7 @@
 				<version>1.0.1</version>
 				<configuration>
 					<container>
-						<containerId>tomcat6x</containerId>
+						<containerId>tomcat7x</containerId>
 						<type>remote</type>
 					</container>
 					<configuration>
@@ -58,7 +58,7 @@
 		<target.version>RELEASE</target.version>
 		<tomcat.manager.url>http://localhost:8888/manager</tomcat.manager.url>
 		<tomcat.username>admin</tomcat.username>
-		<tomcat.password>password</tomcat.password>
+		<tomcat.password>admin</tomcat.password>
 	</properties>
 	<profiles>
 		<profile>

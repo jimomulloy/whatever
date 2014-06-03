@@ -57,4 +57,43 @@
 			<artifactId>spring-core</artifactId>
 		</dependency>
 	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>database</id>
+			<build>
+				<filters>
+					<filter>src/main/filters/filter.properties</filter>
+				</filters>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+						<filtering>true</filtering>
+					</resource>
+				</resources>
+				<plugins>
+					<!--plugin>
+						<groupId>org.liquibase</groupId>
+						<artifactId>liquibase-maven-plugin</artifactId>
+						<version>3.0.5</version>
+						<executions>
+							<execution>
+								<phase>process-resources</phase>
+								<configuration>
+									<changeLogFile>src/main/resources/org/liquibase/business_table.xml</changeLogFile>
+									<driver>oracle.jdbc.driver.OracleDriver</driver>
+									<url>jdbc:oracle:thin:@tf-appserv-linux:1521:xe</url>
+									<username>liquibaseTest</username>
+									<password>pass</password>
+								</configuration>
+								<goals>
+									<goal>update</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin-->
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
