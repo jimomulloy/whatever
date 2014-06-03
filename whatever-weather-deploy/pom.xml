@@ -34,7 +34,7 @@
 							<deployable>
 								<groupId>${project.groupId}</groupId>
 								<artifactId>whatever-weather-web</artifactId>
-								<version>${project.version}</version>
+								<!--version>${project.version}</version-->
 								<type>war</type>
 								<properties>
 									<context>wtw</context>
