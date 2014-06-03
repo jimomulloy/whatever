@@ -29,19 +29,17 @@
 							<cargo.tomcat.manager.url>${tomcat.manager.url}</cargo.tomcat.manager.url>
 						</properties>
 					</configuration>
-					<deployer>
-						<deployables>
-							<deployable>
-								<groupId>${project.groupId}</groupId>
-								<artifactId>whatever-weather-web</artifactId>
-								<!--version>${project.version}</version-->
-								<type>war</type>
-								<properties>
-									<context>wtw</context>
-								</properties>
-							</deployable>
-						</deployables>
-					</deployer>
+					<deployables>
+						<deployable>
+							<groupId>${project.groupId}</groupId>
+							<artifactId>whatever-weather-web</artifactId>
+							<!--version>${project.version}</version -->
+							<type>war</type>
+							<properties>
+								<context>wtw</context>
+							</properties>
+						</deployable>
+					</deployables>
 				</configuration>
 			</plugin>
 		</plugins>
