@@ -11,7 +11,7 @@ import uk.commonline.data.model.BaseEntity;
 
 @Table(name="WIND")
 @Entity
-public class Wind extends BaseEntity {
+public class Wind extends BaseEntity<Wind> {
 
 	/**
 	 * 

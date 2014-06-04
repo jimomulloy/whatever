@@ -13,9 +13,9 @@ import javax.persistence.TemporalType;
 
 import uk.commonline.data.model.BaseEntity;
 
-@Table(name="WEATHERCONDITION")
+@Table(name = "WEATHERCONDITION")
 @Entity
-public class Condition extends BaseEntity {
+public class Condition extends BaseEntity<Condition> {
 
 	/**
 	 * 
@@ -25,13 +25,13 @@ public class Condition extends BaseEntity {
 	private String code;
 	private String temp;
 	private Date date;
-	
+
 	private Weather weather;
 
 	public Condition() {
 	}
 
-	@Column(name="TEXT")
+	@Column(name = "TEXT")
 	public String getText() {
 		return text;
 	}
@@ -40,7 +40,7 @@ public class Condition extends BaseEntity {
 		this.text = newText;
 	}
 
-	@Column(name="CODE")
+	@Column(name = "CODE")
 	public String getCode() {
 		return code;
 	}
@@ -49,7 +49,7 @@ public class Condition extends BaseEntity {
 		this.code = newCode;
 	}
 
-	@Column(name="TEMP")
+	@Column(name = "TEMP")
 	public String getTemp() {
 		return temp;
 	}
@@ -57,9 +57,9 @@ public class Condition extends BaseEntity {
 	public void setTemp(String newTemp) {
 		this.temp = newTemp;
 	}
-	
+
 	@Temporal(TemporalType.DATE)
-	@Column(name="DATE")
+	@Column(name = "DATE")
 	public Date getDate() {
 		return date;
 	}

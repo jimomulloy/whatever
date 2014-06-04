@@ -16,22 +16,23 @@ import javax.persistence.Transient;
  *
  */
 @MappedSuperclass
-public class BaseEntity implements Serializable {
+public abstract class BaseEntity<T extends EI<T>> implements EI<T>,
+		Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	protected Integer id;
+	protected Long id;
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID")
-	public Integer getId() {
+	@Column(name = "ID")
+	public Long getId() {
 		return id;
 	}
 
@@ -47,7 +48,7 @@ public class BaseEntity implements Serializable {
 		if (o == null || getClass() != o.getClass())
 			return false;
 
-		BaseEntity that = (BaseEntity) o;
+		BaseEntity<?> that = (BaseEntity<?>) o;
 
 		if (id != null ? !id.equals(that.id) : that.id != null)
 			return false;
@@ -58,5 +59,27 @@ public class BaseEntity implements Serializable {
 	@Override
 	public int hashCode() {
 		return id != null ? id.hashCode() : 0;
+	}
+	
+
+	/* (non-Javadoc)
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
+	@Override
+	public int compareTo(T o) {
+		if (this == o)
+			return 0;
+		if (o == null || getClass() != o.getClass())
+			return 1;
+		
+		BaseEntity<?> that = (BaseEntity<?>) o;
+
+		if (id == null) {
+			return (that.getId() == null ? 0 : 1);
+		} else if (that.getId() == null) {
+			return -1;
+		} else {
+			return id.compareTo(that.getId());
+		}
 	}
 }

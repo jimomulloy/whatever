@@ -3,7 +3,9 @@ package uk.commonline.data.access;
 import java.io.Serializable;
 import java.util.List;
 
-public interface Dao<T extends Object> {
+import uk.commonline.data.model.EI;
+
+public interface Dao<T extends EI<T>> {
 	
 	/**
 	 * <p>
@@ -13,7 +15,7 @@ public interface Dao<T extends Object> {
 	 * 
 	 * @param t
 	 */
-	void create(T t);
+	T create(T t);
 	
 	/**
 	 * Finds the requested object in the repository and returns it, or null if there is no such persistent instance.
@@ -40,7 +42,15 @@ public interface Dao<T extends Object> {
 	
 	List<T> getAll();
 	
-	void update(T t);
+	T update(T t);
+
+	/**
+	 * Updates the EI if there aren't any errors. Can potentially generate new errors (e.g. constraint violations).
+	 * 
+	 * @param ei EI to update
+	 * @param errors errors object
+	 */
+	//void update(T ei, Errors errors);
 	
 	void delete(T t);
 	

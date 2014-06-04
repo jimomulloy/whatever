@@ -12,5 +12,10 @@
 	<name>Whatever - Data Access API</name>
 
 	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>whatever-data-model</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
 </project>

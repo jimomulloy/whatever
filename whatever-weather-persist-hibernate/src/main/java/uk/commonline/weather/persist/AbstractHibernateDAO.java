@@ -1,13 +1,15 @@
 package uk.commonline.weather.persist;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public abstract class AbstractHibernateDAO<T extends Serializable> {
+import uk.commonline.data.access.Dao;
+import uk.commonline.data.model.EI;
+
+public abstract class AbstractHibernateDAO<T extends EI<T>> implements Dao<T> {
 	private Class<T> clazz;
 
 	@Autowired
@@ -17,10 +19,12 @@ public abstract class AbstractHibernateDAO<T extends Serializable> {
 		clazz = clazzToSet;
 	}
 
+	@SuppressWarnings("unchecked")
 	public T findOne(final long id) {
 		return (T) getCurrentSession().get(clazz, id);
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<T> findAll() {
 		return getCurrentSession().createQuery("from " + clazz.getName())
 				.list();
@@ -30,6 +34,7 @@ public abstract class AbstractHibernateDAO<T extends Serializable> {
 		getCurrentSession().persist(entity);
 	}
 
+	@SuppressWarnings("unchecked")
 	public T update(final T entity) {
 		return (T) getCurrentSession().merge(entity);
 	}

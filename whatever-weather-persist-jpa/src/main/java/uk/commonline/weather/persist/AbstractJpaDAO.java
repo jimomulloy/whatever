@@ -9,8 +9,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import uk.commonline.data.access.Dao;
+import uk.commonline.data.model.EI;
 
-public abstract class AbstractJpaDAO<T extends Serializable> implements Dao<T>{
+public abstract class AbstractJpaDAO<T extends EI<T>> implements Dao<T>{
 	private Class<T> clazz;
 
 	@PersistenceContext
@@ -21,9 +22,10 @@ public abstract class AbstractJpaDAO<T extends Serializable> implements Dao<T>{
 	}
 	
 	@Override
-	public void create(final T entity) {
+	public T create(final T entity) {
 		notNull(entity, clazz.getName() + " can't be null");
 		entityManager.persist(entity);
+		return entity;
 	}
 
 	@Override
@@ -64,10 +66,11 @@ public abstract class AbstractJpaDAO<T extends Serializable> implements Dao<T>{
 	}
 
 	@Override
-	public void update(final T entity) {
+	public T update(final T entity) {
 		notNull(entity, clazz.getName() + " can't be null");
 		System.out.println("!Update entity:"+entity);
 		entityManager.merge(entity);
+		return entity;
 	}
 
 	@Override

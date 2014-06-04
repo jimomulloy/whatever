@@ -6,15 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
 //import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import uk.commonline.data.model.BaseEntity;
 
-@Table(name="ATMOSPHERE")
+@Table(name = "ATMOSPHERE")
 @Entity
-//@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class Atmosphere extends BaseEntity {
+// @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+public class Atmosphere extends BaseEntity<Atmosphere> {
 
 	/**
 	 * 
@@ -29,39 +27,39 @@ public class Atmosphere extends BaseEntity {
 	public Atmosphere() {
 	}
 
-	@Column(name="HUMIDITY")
+	@Column(name = "HUMIDITY")
 	public String getHumidity() {
 		return humidity;
 	}
 
-	public void setHumidity( String newHumidity) {
+	public void setHumidity(String newHumidity) {
 		this.humidity = newHumidity;
 	}
 
-	@Column(name="VISIBILITY")
+	@Column(name = "VISIBILITY")
 	public String getVisibility() {
 		return visibility;
 	}
 
-	public void setVisibility( String newVisibility) {
+	public void setVisibility(String newVisibility) {
 		this.visibility = newVisibility;
 	}
 
-	@Column(name="PRESSURE")
+	@Column(name = "PRESSURE")
 	public String getPressure() {
 		return pressure;
 	}
 
-	public void setPressure( String newPressure) {
+	public void setPressure(String newPressure) {
 		this.pressure = newPressure;
 	}
 
-	@Column(name="RISING")
+	@Column(name = "RISING")
 	public String getRising() {
 		return rising;
 	}
 
-	public void setRising( String newRising) {
+	public void setRising(String newRising) {
 		this.rising = newRising;
 	}
 

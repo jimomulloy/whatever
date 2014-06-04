@@ -9,9 +9,13 @@ import javax.persistence.MappedSuperclass;
  * needing these properties.
  */
 @MappedSuperclass
-public class NamedEntity extends BaseEntity {
+public abstract class NamedEntity<T extends EI<T>> extends BaseEntity<T> {
 
-    @Column(name = "name")
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Column(name = "name")
     private String name;
 
 

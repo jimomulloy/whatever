@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
@@ -131,22 +130,24 @@
 	<modules>
 		<module>whatever-utils</module>
 		<module>whatever-common</module>
-		<module>whatever-data-access</module>
 		<module>whatever-data-model</module>
+		<module>whatever-data-access</module>
+		<module>whatever-data-service</module>
 		<module>whatever-weather-build</module>
 		<module>whatever-weather-model</module>
 		<module>whatever-weather-service</module>
 		<module>whatever-weather-persist</module>
-		<module>whatever-weather-persist-service</module>
 		<!--module>whatever-weather-persist-jpa</module -->
 		<!-- module>whatever-weather-persist-hibernate</module -->
+		<!--module>whatever-weather-persist-service</module-->
 		<module>whatever-weather-service-yahoo</module>
 		<!--module>whatever-weather-command</module -->
 		<!--module>whatever-weather-jaxrs</module -->
 		<!-- module>whatever-weather-web</module -->
 		<module>whatever-weather-deploy</module>
 		<!--module>whatever-backbone</module -->
-	</modules>
+    	<module>whatever-weather-persist-client</module>
+  </modules>
 
 	<reporting>
 		<plugins>
@@ -662,7 +663,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore />
+										<ignore/>
 									</action>
 								</pluginExecution>
 								<pluginExecution>
@@ -675,7 +676,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore />
+										<ignore/>
 									</action>
 								</pluginExecution>
 								<pluginExecution>
@@ -692,7 +693,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore />
+										<ignore/>
 									</action>
 								</pluginExecution>
 							</pluginExecutions>

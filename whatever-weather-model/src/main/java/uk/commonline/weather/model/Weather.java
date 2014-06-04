@@ -1,6 +1,7 @@
 package uk.commonline.weather.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,18 +14,17 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import uk.commonline.data.model.BaseEntity;
+import uk.commonline.data.model.ListWrapper;
 
+@SuppressWarnings("serial")
 @Table(name="WEATHER")
 @Entity
 @NamedQueries({ @NamedQuery(name = "Weather.byLocation", query = "from Weather w where w.location = :location") })
-public class Weather extends BaseEntity {
-
-	/**
-	 * 
-	 */
-	private static long serialVersionUID = 1L;
+public class Weather extends BaseEntity<Weather> {
 
 	private Location location;
 
@@ -40,7 +40,7 @@ public class Weather extends BaseEntity {
 	}
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "LOCATION_ZIP", nullable = false)
+	@JoinColumn(name = "LOCATION_ID", nullable = false)
 	public Location getLocation() {
 		return location;
 	}
@@ -84,5 +84,23 @@ public class Weather extends BaseEntity {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	@XmlRootElement(name = "weathers")
+	public static class WeatherListWrapper implements ListWrapper<Weather> {
+		private List<Weather> list;
+		
+		/* (non-Javadoc)
+		 * @see com.springinpractice.ch11.model.ListWrapper#getList()
+		 */
+		@Override
+		@XmlElement(name = "weather")
+		public List<Weather> getList() { return list; }
+		
+		/* (non-Javadoc)
+		 * @see com.springinpractice.ch11.model.ListWrapper#setList(java.util.List)
+		 */
+		@Override
+		public void setList(List<Weather> list) { this.list = list; }
 	}
 }
