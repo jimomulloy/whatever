@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * Simple JavaBean domain object with an id property. Used as a base class for
@@ -37,6 +38,7 @@ public abstract class BaseEntity<T extends EI<T>> implements EI<T>,
 	}
 
 	@Transient
+	@XmlTransient
 	public boolean isNew() {
 		return (this.id == null);
 	}
