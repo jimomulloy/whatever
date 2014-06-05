@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import uk.commonline.data.model.BaseEntity;
 import uk.commonline.data.model.ListWrapper;
 
+@XmlRootElement
 @SuppressWarnings("serial")
 @Table(name="WEATHER")
 @Entity

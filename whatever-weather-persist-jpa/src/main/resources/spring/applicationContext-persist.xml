@@ -54,7 +54,7 @@
 		<jdbc:script location="${jdbc.dataLocation}" />
 	</jdbc:initialize-database>
 
-	<context:component-scan base-package="uk.commonline.weather" />
+	<context:component-scan base-package="uk.commonline" />
 
 	<context:annotation-config />
 

@@ -9,6 +9,7 @@ import uk.commonline.weather.model.Location;
 public class JpaLocationDAO extends AbstractJpaDAO<Location> implements LocationDAO {
 	
 	public JpaLocationDAO() {
+		System.out.println("!!HI GUYS!!");
 		setClazz(Location.class);
 	}
 

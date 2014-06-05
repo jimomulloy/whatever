@@ -137,16 +137,11 @@
 		<module>whatever-weather-model</module>
 		<module>whatever-weather-service</module>
 		<module>whatever-weather-persist</module>
-		<!--module>whatever-weather-persist-jpa</module -->
-		<!-- module>whatever-weather-persist-hibernate</module -->
-		<!--module>whatever-weather-persist-service</module-->
 		<module>whatever-weather-service-yahoo</module>
 		<!--module>whatever-weather-command</module -->
-		<!--module>whatever-weather-jaxrs</module -->
 		<!-- module>whatever-weather-web</module -->
 		<module>whatever-weather-deploy</module>
 		<!--module>whatever-backbone</module -->
-    	<module>whatever-weather-persist-client</module>
   </modules>
 
 	<reporting>

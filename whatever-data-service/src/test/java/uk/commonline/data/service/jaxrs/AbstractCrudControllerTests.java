@@ -109,14 +109,14 @@ public abstract class AbstractCrudControllerTests<T extends EI<T>> {
 		assertNotNull(entities);
 	}
 	
-	@Test
-	public void testGetEntityListAsXml() throws Exception {
-		ListWrapper<T> wrapper = controller.getListAsXml();
-		assertNotNull(wrapper);
+	//@Test
+	//public void testGetEntityListAsXml() throws Exception {
+	//	ListWrapper<T> wrapper = controller.getListAsXml();
+	//	assertNotNull(wrapper);
 		
-		List<T> list = wrapper.getList();
-		assertNotNull(list);
-	}
+	//	List<T> list = wrapper.getList();
+	//	assertNotNull(list);
+	//}
 	
 	
 //	@Test
@@ -125,11 +125,11 @@ public abstract class AbstractCrudControllerTests<T extends EI<T>> {
 //		verify(objectMapper, times(1)).writeValue(eq(out), anyObject());
 //	}
 	
-	@Test
-	public void testGetDetailsAsXml() {
-		T entity = controller.getDetailsAsXml(1L);
-		assertNotNull(entity);
-	}
+	//@Test
+	//public void testGetDetailsAsXml() {
+	//	T entity = controller.getDetailsAsXml(1L);
+	//	assertNotNull(entity);
+	//}
 		
 	/**
 	 * Confirms that we handle validation errors properly.
@@ -146,9 +146,9 @@ public abstract class AbstractCrudControllerTests<T extends EI<T>> {
 	// Delete
 	// =================================================================================================================
 	
-	@Test
-	public void testDeleteEntity() {
-		controller.remove(1L);
+	//@Test
+	//public void testDeleteEntity() {
+	//	controller.remove(1L);
 		//assertEquals(VN_DELETE_ENTITY_SUCCESS, viewName);
-	}
+	//}
 }

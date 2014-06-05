@@ -6,9 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import uk.commonline.data.model.BaseEntity;
 
+@XmlRootElement
 @Table(name="WIND")
 @Entity
 public class Wind extends BaseEntity<Wind> {

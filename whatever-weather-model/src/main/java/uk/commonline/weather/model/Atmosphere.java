@@ -6,9 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+
 //import org.hibernate.annotations.CacheConcurrencyStrategy;
 import uk.commonline.data.model.BaseEntity;
 
+@XmlRootElement
 @Table(name = "ATMOSPHERE")
 @Entity
 // @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
