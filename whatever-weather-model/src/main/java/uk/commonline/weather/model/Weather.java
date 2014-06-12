@@ -16,92 +16,121 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import uk.commonline.data.model.BaseEntity;
 import uk.commonline.data.model.ListWrapper;
 
 @XmlRootElement
 @SuppressWarnings("serial")
-@Table(name="WEATHER")
+@Table(name = "WEATHER")
 @Entity
 @NamedQueries({ @NamedQuery(name = "Weather.byLocation", query = "from Weather w where w.location = :location") })
 public class Weather extends BaseEntity<Weather> {
 
-	private Location location;
+    private Location location;
 
-	private Condition condition;
+    private Condition condition;
 
-	private Wind wind;
+    private Wind wind;
 
-	private Atmosphere atmosphere;
+    private Atmosphere atmosphere;
 
-	private Date date;
+    private Date date;
 
-	public Weather() {
+    private Source source;
+
+    public Weather() {
+    }
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "LOCATION_ID", nullable = false)
+    public Location getLocation() {
+	return location;
+    }
+
+    public void setLocation(Location location) {
+	this.location = location;
+    }
+
+    @OneToOne(mappedBy = "weather", cascade = CascadeType.ALL)
+    @XmlTransient
+    public Condition getCondition() {
+	return condition;
+    }
+
+    public void setCondition(Condition newCondition) {
+	this.condition = newCondition;
+    }
+
+    @OneToOne(mappedBy = "weather", cascade = CascadeType.ALL)
+    @XmlTransient
+    public Wind getWind() {
+	return wind;
+    }
+
+    public void setWind(Wind wind) {
+	this.wind = wind;
+    }
+
+    @OneToOne(mappedBy = "weather", cascade = CascadeType.ALL)
+    @XmlTransient
+    public Atmosphere getAtmosphere() {
+	return atmosphere;
+    }
+
+    public void setAtmosphere(Atmosphere atmosphere) {
+	this.atmosphere = atmosphere;
+    }
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "DATE")
+    public Date getDate() {
+	return date;
+    }
+
+    public void setDate(Date date) {
+	this.date = date;
+    }
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "SOURCE_ID", nullable = false)
+    public Source getSource() {
+	return source;
+    }
+
+    public void setSource(Source source) {
+	this.source = source;
+    }
+
+    @XmlRootElement(name = "weathers")
+    public static class WeatherListWrapper implements ListWrapper<Weather> {
+	private List<Weather> list;
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.springinpractice.ch11.model.ListWrapper#getList()
+	 */
+	@Override
+	@XmlElement(name = "weather")
+	public List<Weather> getList() {
+	    return list;
 	}
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "LOCATION_ID", nullable = false)
-	public Location getLocation() {
-		return location;
-	}
 
-	public void setLocation(Location location) {
-		this.location = location;
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.springinpractice.ch11.model.ListWrapper#setList(java.util.List)
+	 */
+	@Override
+	public void setList(List<Weather> list) {
+	    this.list = list;
 	}
-
-	@OneToOne(mappedBy = "weather", cascade = CascadeType.ALL)
-	public Condition getCondition() {
-		return condition;
-	}
-
-	public void setCondition(Condition newCondition) {
-		this.condition = newCondition;
-	}
-
-	@OneToOne(mappedBy = "weather", cascade = CascadeType.ALL)
-	public Wind getWind() {
-		return wind;
-	}
-
-	public void setWind(Wind wind) {
-		this.wind = wind;
-	}
-
-	@OneToOne(mappedBy = "weather", cascade = CascadeType.ALL)
-	public Atmosphere getAtmosphere() {
-		return atmosphere;
-	}
-
-	public void setAtmosphere(Atmosphere atmosphere) {
-		this.atmosphere = atmosphere;
-	}
-	 
-	@Temporal(TemporalType.DATE)
-	@Column(name="DATE")
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	@XmlRootElement(name = "weathers")
-	public static class WeatherListWrapper implements ListWrapper<Weather> {
-		private List<Weather> list;
-		
-		/* (non-Javadoc)
-		 * @see com.springinpractice.ch11.model.ListWrapper#getList()
-		 */
-		@Override
-		@XmlElement(name = "weather")
-		public List<Weather> getList() { return list; }
-		
-		/* (non-Javadoc)
-		 * @see com.springinpractice.ch11.model.ListWrapper#setList(java.util.List)
-		 */
-		@Override
-		public void setList(List<Weather> list) { this.list = list; }
-	}
+    }
+    
+    public String toString() {
+	return "WTW Weather:" + date;
+    }
 }

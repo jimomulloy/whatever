@@ -24,12 +24,22 @@
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>whatever-weather-service-yahoo</artifactId>
+			<artifactId>wtw-man-service</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>whatever-weather-persist-jpa</artifactId>
+			<artifactId>wtw-man-client</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>wtw-geo-service</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>wtw-geo-client</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
@@ -132,7 +142,7 @@
 	<build>
 		<finalName>wtw</finalName>
 		<plugins>
-			<plugin>
+			<!--plugin>
 				<groupId>com.github.trecloux</groupId>
 				<artifactId>yeoman-maven-plugin</artifactId>
 				<version>0.1</version>
@@ -143,7 +153,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin-->
 			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>
 				<version>2.5</version>
@@ -236,12 +246,12 @@
 							<Implementation-Version>${BUILD_TAG}</Implementation-Version>
 						</manifestEntries>
 					</archive>
-					<webResources>
+					<!--webResources>
 						<resource>
 							<targetPath>/dist</targetPath>
 							<directory>yo/dist</directory>
 						</resource>
-					</webResources>
+					</webResources-->
 				</configuration>
 			</plugin>
 

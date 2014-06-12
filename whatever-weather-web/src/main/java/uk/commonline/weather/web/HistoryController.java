@@ -13,50 +13,51 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import uk.commonline.weather.geo.client.jaxrs.GeoLocationClient;
+import uk.commonline.weather.man.client.jaxrs.WeatherManClient;
 import uk.commonline.weather.model.Location;
 import uk.commonline.weather.model.Weather;
-import uk.commonline.weather.persist.LocationDAO;
-import uk.commonline.weather.service.WeatherService;
 
 @Controller
 //@RequestMapping(value = "/history")
 public class HistoryController {
 
 	@Inject
-	private LocationDAO locationDAO;
+	private GeoLocationClient geoLocationClient;
 
 	@Inject
-	private WeatherService weatherService;
+	private WeatherManClient weatherManClient;
 	
 	@RequestMapping(value = "/history", method = RequestMethod.GET)
 	public ModelAndView handleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		String zip = request.getParameter("zip");
-		Location location = locationDAO.findByZip(zip);
 		
-		List<Weather> weathers = weatherService.getRecentWeather(location);
+		String zip = request.getParameter("zip");
+		Location location = geoLocationClient.findByZip(zip);
+		
+		//List<Weather> weathers = weatherManClient.getRecentWeather(location);
 		
 		Map<String,Object> model = new HashMap<String,Object>();
 		model.put( "location", location );
-		model.put( "weathers", weathers );
+		//model.put( "weathers", weathers );
 		
 		return new ModelAndView("history", model);
 	}
-
-	public LocationDAO getLocationDAO() {
-		return locationDAO;
-	}
-
-	public void setLocationDAO(LocationDAO locationDAO) {
-		this.locationDAO = locationDAO;
-	}
 	
-	public WeatherService getWeatherService() {
-		return weatherService;
+	public WeatherManClient getWeatherManService() {
+		return weatherManClient;
 	}
 
-	public void setWeatherService(WeatherService weatherService) {
-		this.weatherService = weatherService;
+	public void setWeatherManService(WeatherManClient weatherManClient) {
+		this.weatherManClient = weatherManClient;
+	}	
+	
+	public GeoLocationClient getGeoLocationService() {
+		return geoLocationClient;
+	}
+
+	public void setGeoLocationService(GeoLocationClient geoLocationClient) {
+		this.geoLocationClient = geoLocationClient;
 	}
 
 }

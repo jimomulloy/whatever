@@ -3,8 +3,6 @@ package uk.commonline.weather.service.yahoo;
 import java.io.InputStream;
 import java.util.List;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import uk.commonline.weather.model.Location;
 import uk.commonline.weather.model.Weather;
 import uk.commonline.weather.persist.WeatherDAO;
@@ -19,7 +17,6 @@ public class WeatherServiceImpl implements WeatherService {
 	public WeatherServiceImpl() {
 	}
 
-    @Transactional
 	public Weather updateForecast(String zip) throws Exception {
     	Weather weather = retrieveForecast(zip);
     	System.out.println("!Update forcast for zip:"+zip);
@@ -27,13 +24,11 @@ public class WeatherServiceImpl implements WeatherService {
 		return weather;
 	}
     
-    @Transactional(readOnly = true)
     public List<Weather> getRecentWeather(Location location) throws Exception {
 		List<Weather> weathers = weatherDAO.recentForLocation( location );
 		return weathers;
 	}
 
-    @Transactional(readOnly = true)
     public Weather retrieveForecast(String zip) throws Exception {
 		// Retrieve Data
 		InputStream dataIn = yahooRetriever.retrieve(zip);

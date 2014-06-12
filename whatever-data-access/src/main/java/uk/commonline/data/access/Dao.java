@@ -1,6 +1,5 @@
 package uk.commonline.data.access;
 
-import java.io.Serializable;
 import java.util.List;
 
 import uk.commonline.data.model.EI;
@@ -23,7 +22,7 @@ public interface Dao<T extends EI<T>> {
 	 * @param id ID
 	 * @return requested object, or null
 	 */
-	T get(Serializable id);
+	T get(Long id);
 	
 	/**
 	 * <p>
@@ -38,7 +37,7 @@ public interface Dao<T extends EI<T>> {
 	 * @param id
 	 * @return
 	 */
-	T load(Serializable id);
+	T load(Long id);
 	
 	List<T> getAll();
 	
@@ -54,11 +53,11 @@ public interface Dao<T extends EI<T>> {
 	
 	void delete(T t);
 	
-	void deleteById(Serializable id);
+	void deleteById(Long id);
 	
 	void deleteAll();
 	
 	long count();
 	
-	boolean exists(Serializable id);
+	boolean exists(Long id);
 }

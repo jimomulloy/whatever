@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
@@ -133,6 +134,7 @@
 		<module>whatever-data-model</module>
 		<module>whatever-data-access</module>
 		<module>whatever-data-service</module>
+		<module>whatever-data-client</module>
 		<module>whatever-weather-build</module>
 		<module>whatever-weather-model</module>
 		<module>whatever-weather-service</module>
@@ -142,7 +144,7 @@
 		<!-- module>whatever-weather-web</module -->
 		<module>whatever-weather-deploy</module>
 		<!--module>whatever-backbone</module -->
-  </modules>
+	</modules>
 
 	<reporting>
 		<plugins>
@@ -282,7 +284,6 @@
 	</repositories>
 
 	<build>
-		<finalName>wtw</finalName>
 		<defaultGoal>install</defaultGoal>
 		<plugins>
 			<!--plugin> <groupId>org.liquibase</groupId> <artifactId>liquibase-maven-plugin</artifactId> 
@@ -658,7 +659,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore/>
+										<ignore />
 									</action>
 								</pluginExecution>
 								<pluginExecution>
@@ -671,7 +672,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore/>
+										<ignore />
 									</action>
 								</pluginExecution>
 								<pluginExecution>
@@ -688,7 +689,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore/>
+										<ignore />
 									</action>
 								</pluginExecution>
 							</pluginExecutions>
@@ -1399,7 +1400,11 @@
 			<version>1.7.4</version>
 			<scope>compile</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>2.2.2</version>
+		</dependency>
 		<!-- add commons logging to slf4j bridge to classpath -->
 		<!-- acts as jcl but routes commons-logging calls to slf4j -->
 		<dependency>

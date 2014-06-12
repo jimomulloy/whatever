@@ -22,11 +22,9 @@
              http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd"
 	default-lazy-init="true">
 
-	<context:component-scan base-package="uk.commonline.weather" />
+	<context:component-scan base-package="uk.commonline" />
 
 	<context:annotation-config />
-
-	<tx:annotation-driven />
 
     <bean id="weatherService" class="uk.commonline.weather.service.yahoo.WeatherServiceImpl">
       <property name="yahooRetriever" ref="yahooRetriever"/>
