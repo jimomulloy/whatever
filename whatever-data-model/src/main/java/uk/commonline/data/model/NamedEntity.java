@@ -8,7 +8,7 @@ import javax.persistence.MappedSuperclass;
  * . Used as a base class for objects needing these properties.
  */
 @MappedSuperclass
-public abstract class NamedEntity<T extends EI<T>> extends BaseEntity<T> {
+public abstract class NamedEntity extends BaseEntity {
 
     /**
 	 * 

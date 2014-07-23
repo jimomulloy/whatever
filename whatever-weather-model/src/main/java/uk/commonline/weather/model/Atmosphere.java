@@ -6,74 +6,81 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
+
+import org.codehaus.jackson.annotate.JsonBackReference;
 
 //import org.hibernate.annotations.CacheConcurrencyStrategy;
 import uk.commonline.data.model.BaseEntity;
 
-@XmlRootElement
 @Table(name = "ATMOSPHERE")
 @Entity
 // @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class Atmosphere extends BaseEntity<Atmosphere> {
+public class Atmosphere extends BaseEntity {
 
-	/**
+    @Override
+    public String toString() {
+	return "Atmosphere [humidity=" + humidity + ", visibility=" + visibility + ", pressure=" + pressure + ", rising=" + rising +", id=" + id + "]";
+    }
+
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	private String humidity;
-	private String visibility;
-	private String pressure;
-	private String rising;
-	private Weather weather;
+    private static final long serialVersionUID = 1L;
+    private double humidity = 0.0;
+    private double visibility = 0.0;
+    private double pressure = 0.0;
+    private String rising;
 
-	public Atmosphere() {
-	}
+    @JsonBackReference
+    private Weather weather;
 
-	@Column(name = "HUMIDITY")
-	public String getHumidity() {
-		return humidity;
-	}
+    public Atmosphere() {
+    }
 
-	public void setHumidity(String newHumidity) {
-		this.humidity = newHumidity;
-	}
+    @Column(name = "HUMIDITY")
+    public double getHumidity() {
+	return humidity;
+    }
 
-	@Column(name = "VISIBILITY")
-	public String getVisibility() {
-		return visibility;
-	}
+    public void setHumidity(double newHumidity) {
+	this.humidity = newHumidity;
+    }
 
-	public void setVisibility(String newVisibility) {
-		this.visibility = newVisibility;
-	}
+    @Column(name = "VISIBILITY")
+    public double getVisibility() {
+	return visibility;
+    }
 
-	@Column(name = "PRESSURE")
-	public String getPressure() {
-		return pressure;
-	}
+    public void setVisibility(double newVisibility) {
+	this.visibility = newVisibility;
+    }
 
-	public void setPressure(String newPressure) {
-		this.pressure = newPressure;
-	}
+    @Column(name = "PRESSURE")
+    public double getPressure() {
+	return pressure;
+    }
 
-	@Column(name = "RISING")
-	public String getRising() {
-		return rising;
-	}
+    public void setPressure(double newPressure) {
+	this.pressure = newPressure;
+    }
 
-	public void setRising(String newRising) {
-		this.rising = newRising;
-	}
+    @Column(name = "RISING")
+    public String getRising() {
+	return rising;
+    }
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "WEATHER_ID", nullable = false)
-	public Weather getWeather() {
-		return weather;
-	}
+    public void setRising(String newRising) {
+	this.rising = newRising;
+    }
 
-	public void setWeather(Weather weather) {
-		this.weather = weather;
-	}
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "WEATHER_ID", referencedColumnName = "id")
+    public Weather getWeather() {
+	return weather;
+    }
+
+    public void setWeather(Weather weather) {
+	this.weather = weather;
+    }
 
 }

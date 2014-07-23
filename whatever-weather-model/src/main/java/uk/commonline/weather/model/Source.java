@@ -13,12 +13,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 import uk.commonline.data.model.ListWrapper;
 import uk.commonline.data.model.NamedEntity;
 
-@XmlRootElement
+//@XmlRootElement
 @SuppressWarnings("serial")
 @Table(name = "SOURCE")
 @Entity
 @NamedQueries({ @NamedQuery(name = "Source.uniqueByName", query = "from Source s where s.name = :name") })
-public class Source extends NamedEntity<Source> {
+public class Source extends NamedEntity {
 
     private String url;
 
@@ -34,34 +34,8 @@ public class Source extends NamedEntity<Source> {
 	this.url = url;
     }
 
-    @XmlRootElement(name = "sources")
-    public static class SourceListWrapper implements ListWrapper<Source> {
-	private List<Source> list;
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.springinpractice.ch11.model.ListWrapper#getList()
-	 */
-	@Override
-	@XmlElement(name = "location")
-	public List<Source> getList() {
-	    return list;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.springinpractice.ch11.model.ListWrapper#setList(java.util.List)
-	 */
-	@Override
-	public void setList(List<Source> list) {
-	    this.list = list;
-	}
-    }
-
+    @Override
     public String toString() {
-	return "WTW Source:" + getName();
+	return "Source [url=" + url + ", id=" + id + "]";
     }
 }

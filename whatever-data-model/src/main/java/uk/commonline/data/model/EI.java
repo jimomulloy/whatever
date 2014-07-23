@@ -1,11 +1,13 @@
 package uk.commonline.data.model;
 
+import java.io.Serializable;
+
 
 /**
  * Entity (EI) interface.
  * 
  */
-public interface EI<T extends EI<T>> extends Comparable<T> {
+public interface EI extends Serializable{
 
 	/**
 	 * @return CI ID

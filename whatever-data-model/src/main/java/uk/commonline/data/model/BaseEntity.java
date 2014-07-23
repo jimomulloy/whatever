@@ -17,71 +17,49 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  */
 @MappedSuperclass
-public abstract class BaseEntity<T extends EI<T>> implements EI<T>,
-		Serializable {
-	/**
+public abstract class BaseEntity implements EI {
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	protected Long id;
+    protected Long id;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+	this.id = id;
+    }
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
-	public Long getId() {
-		return id;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    public Long getId() {
+	return id;
+    }
 
-	@Transient
-	@XmlTransient
-	public boolean isNew() {
-		return (this.id == null);
-	}
+    @Transient
+    @XmlTransient
+    public boolean isNew() {
+	return (this.id == null);
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
+    @Override
+    public boolean equals(Object o) {
+	if (this == o)
+	    return true;
+	if (o == null || getClass() != o.getClass())
+	    return false;
 
-		BaseEntity<?> that = (BaseEntity<?>) o;
+	BaseEntity that = (BaseEntity) o;
 
-		if (id != null ? !id.equals(that.id) : that.id != null)
-			return false;
+	if (id != null ? !id.equals(that.id) : that.id != null)
+	    return false;
 
-		return true;
-	}
+	return true;
+    }
 
-	@Override
-	public int hashCode() {
-		return id != null ? id.hashCode() : 0;
-	}
-	
+    @Override
+    public int hashCode() {
+	return id != null ? id.hashCode() : 0;
+    }
 
-	/* (non-Javadoc)
-	 * @see java.lang.Comparable#compareTo(java.lang.Object)
-	 */
-	@Override
-	public int compareTo(T o) {
-		if (this == o)
-			return 0;
-		if (o == null || getClass() != o.getClass())
-			return 1;
-		
-		BaseEntity<?> that = (BaseEntity<?>) o;
-
-		if (id == null) {
-			return (that.getId() == null ? 0 : 1);
-		} else if (that.getId() == null) {
-			return -1;
-		} else {
-			return id.compareTo(that.getId());
-		}
-	}
 }

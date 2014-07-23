@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  */
-public interface ListWrapper<T extends EI<T>> {
+public interface ListWrapper<T extends EI> {
 	
 	List<T> getList();
 	

@@ -6,8 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -16,45 +16,54 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 import uk.commonline.data.model.BaseEntity;
+import uk.commonline.data.model.EI;
 import uk.commonline.data.model.ListWrapper;
 
-@XmlRootElement
 @SuppressWarnings("serial")
 @Table(name = "WEATHER")
 @Entity
-@NamedQueries({ @NamedQuery(name = "Weather.byLocation", query = "from Weather w where w.location = :location") })
-public class Weather extends BaseEntity<Weather> {
+@Inheritance(strategy = InheritanceType.JOINED)
+@NamedQueries({ @NamedQuery(name = "Weather.byRegion", query = "from Weather w where w.region = :region and w.writeTime >= :date"),
+	@NamedQuery(name = "Weather.since", query = "from Weather w where w.writeTime >= :date") })
+public class Weather extends BaseEntity {
 
-    private Location location;
+    private long region = 0;
 
+    @JsonManagedReference
     private Condition condition;
 
+    @JsonManagedReference
     private Wind wind;
 
+    @JsonManagedReference
     private Atmosphere atmosphere;
 
-    private Date date;
+    private Date writeTime = new Date();
 
-    private Source source;
+    private Date sourceTime = new Date();
+
+    private String source;
+
+    @JsonManagedReference
+    private Precipitation precipitation;
 
     public Weather() {
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "LOCATION_ID", nullable = false)
-    public Location getLocation() {
-	return location;
+    @Column(name = "REGION")
+    public long getRegion() {
+	return region;
     }
 
-    public void setLocation(Location location) {
-	this.location = location;
+    public void setRegion(long region) {
+	this.region = region;
     }
 
     @OneToOne(mappedBy = "weather", cascade = CascadeType.ALL)
-    @XmlTransient
     public Condition getCondition() {
 	return condition;
     }
@@ -64,7 +73,6 @@ public class Weather extends BaseEntity<Weather> {
     }
 
     @OneToOne(mappedBy = "weather", cascade = CascadeType.ALL)
-    @XmlTransient
     public Wind getWind() {
 	return wind;
     }
@@ -74,7 +82,6 @@ public class Weather extends BaseEntity<Weather> {
     }
 
     @OneToOne(mappedBy = "weather", cascade = CascadeType.ALL)
-    @XmlTransient
     public Atmosphere getAtmosphere() {
 	return atmosphere;
     }
@@ -84,53 +91,84 @@ public class Weather extends BaseEntity<Weather> {
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "DATE")
-    public Date getDate() {
-	return date;
+    @Column(name = "WRITETIME")
+    public Date getWriteTime() {
+	return writeTime;
     }
 
-    public void setDate(Date date) {
-	this.date = date;
+    public void setWriteTime(Date writeTime) {
+	this.writeTime = writeTime;
+    }
+    
+    @Temporal(TemporalType.DATE)
+    @Column(name = "SOURCETIME")
+    public Date getSourceTime() {
+	return sourceTime;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "SOURCE_ID", nullable = false)
-    public Source getSource() {
+    public void setSourceTime(Date sourceTime) {
+	this.sourceTime = sourceTime;
+    }
+
+    @Column(name = "SOURCE")
+    public String getSource() {
 	return source;
     }
 
-    public void setSource(Source source) {
+    public void setSource(String source) {
 	this.source = source;
     }
 
-    @XmlRootElement(name = "weathers")
-    public static class WeatherListWrapper implements ListWrapper<Weather> {
-	private List<Weather> list;
+    @Override
+    public String toString() {
+	return "Weather [region=" + region + ", condition=" + condition + ", wind=" + wind + ", atmosphere=" + atmosphere + ", writeTime="
+		+ writeTime + ", sourceTime=" + sourceTime + ", source=" + source + ", precipitation=" + precipitation + ", id=" + id + "]";
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.springinpractice.ch11.model.ListWrapper#getList()
-	 */
-	@Override
-	@XmlElement(name = "weather")
-	public List<Weather> getList() {
-	    return list;
+    @OneToOne(mappedBy = "weather", cascade = CascadeType.ALL)
+    public Precipitation getPrecipitation() {
+	return precipitation;
+    }
+
+    public void setPrecipitation(Precipitation precipitation) {
+	this.precipitation = precipitation;
+    }
+
+    public void clearBackReferences() {
+	if (atmosphere != null) {
+	    atmosphere.setWeather(null);
+
 	}
+	if (condition != null) {
+	    condition.setWeather(null);
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.springinpractice.ch11.model.ListWrapper#setList(java.util.List)
-	 */
-	@Override
-	public void setList(List<Weather> list) {
-	    this.list = list;
+	}
+	if (wind != null) {
+	    wind.setWeather(null);
+
+	}
+	if (precipitation != null) {
+	    precipitation.setWeather(null);
+
 	}
     }
-    
-    public String toString() {
-	return "WTW Weather:" + date;
+
+    public void setBackReferences() {
+	if (atmosphere != null) {
+	    atmosphere.setWeather(this);
+
+	}
+	if (condition != null) {
+	    condition.setWeather(this);
+
+	}
+	if (wind != null) {
+	    wind.setWeather(this);
+
+	}
+	if (precipitation != null) {
+	    precipitation.setWeather(this);
+
+	}
     }
 }

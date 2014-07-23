@@ -12,6 +12,8 @@ public class WeatherUserLogin {
 	@Size(min=4, max=8)
 	private String password;
 
+	private double latitude, longitude;
+	
 	public String getPassword() {
 		return password;
 	}
@@ -26,5 +28,21 @@ public class WeatherUserLogin {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	public double getLongitude() {
+	    return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+	    this.longitude = longitude;
+	}
+
+	public double getLatitude() {
+	    return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+	    this.latitude = latitude;
 	}	
 }

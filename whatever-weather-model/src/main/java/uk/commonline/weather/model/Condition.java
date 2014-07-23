@@ -10,74 +10,123 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
+
+import org.codehaus.jackson.annotate.JsonBackReference;
 
 import uk.commonline.data.model.BaseEntity;
 
-@XmlRootElement
+//@XmlRootElement
 @Table(name = "WEATHERCONDITION")
 @Entity
-public class Condition extends BaseEntity<Condition> {
+public class Condition extends BaseEntity{
 
-	/**
+    @Override
+    public String toString() {
+	return "Condition [text=" + text + ", description=" + description + ", code=" + code + ", icon=" + icon + ", minTemp=" + minTemp
+		+ ", maxTemp=" + maxTemp + ", fromTime=" + fromTime + ", toTime=" + toTime + ", id=" + id + "]";
+    }
+
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	private String text;
-	private String code;
-	private String temp;
-	private Date date;
+    private static final long serialVersionUID = 1L;
+    private String text;
+    private String description;
+    private String code;
+    private String icon;
+    private double minTemp = 0.0;
+    private double maxTemp = 0.0;
+    private Date fromTime = new Date();
+    private Date toTime = new Date();
 
-	private Weather weather;
+    @JsonBackReference
+    private Weather weather;
 
-	public Condition() {
-	}
+    public Condition() {
+    }
 
-	@Column(name = "TEXT")
-	public String getText() {
-		return text;
-	}
+    @Column(name = "CODE")
+    public String getCode() {
+	return code;
+    }
 
-	public void setText(String newText) {
-		this.text = newText;
-	}
+    @Column(name = "MAXTEMP")
+    public double getMaxTemp() {
+	return maxTemp;
+    }
 
-	@Column(name = "CODE")
-	public String getCode() {
-		return code;
-	}
+    @Column(name = "MINTEMP")
+    public double getMinTemp() {
+	return minTemp;
+    }
 
-	public void setCode(String newCode) {
-		this.code = newCode;
-	}
+    @Column(name = "TEXT")
+    public String getText() {
+	return text;
+    }
 
-	@Column(name = "TEMP")
-	public String getTemp() {
-		return temp;
-	}
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "WEATHER_ID", referencedColumnName = "id")
+    public Weather getWeather() {
+	return weather;
+    }
 
-	public void setTemp(String newTemp) {
-		this.temp = newTemp;
-	}
+    public void setCode(String newCode) {
+	this.code = newCode;
+    }
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "DATE")
-	public Date getDate() {
-		return date;
-	}
+    public void setMaxTemp(double maxTemp) {
+	this.maxTemp = maxTemp;
+    }
 
-	public void setDate(Date newDate) {
-		this.date = newDate;
-	}
+    public void setMinTemp(double minTemp) {
+	this.minTemp = minTemp;
+    }
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "WEATHER_ID", nullable = false)
-	public Weather getWeather() {
-		return weather;
-	}
+    public void setText(String newText) {
+	this.text = newText;
+    }
 
-	public void setWeather(Weather weather) {
-		this.weather = weather;
-	}
+    public void setWeather(Weather weather) {
+	this.weather = weather;
+    }
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "TOTIME")
+    public Date getToTime() {
+	return toTime;
+    }
+
+    public void setToTime(Date toTime) {
+	this.toTime = toTime;
+    }
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "FROMTIME")
+    public Date getFromTime() {
+	return fromTime;
+    }
+
+    public void setFromTime(Date fromTime) {
+	this.fromTime = fromTime;
+    }
+
+    @Column(name = "ICON")
+    public String getIcon() {
+	return icon;
+    }
+
+    public void setIcon(String icon) {
+	this.icon = icon;
+    }
+
+    @Column(name = "DESCRIPTION")
+    public String getDescription() {
+	return description;
+    }
+
+    public void setDescription(String description) {
+	this.description = description;
+    }
 
 }

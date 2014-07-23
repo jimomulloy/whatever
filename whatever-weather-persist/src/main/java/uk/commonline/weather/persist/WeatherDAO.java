@@ -7,7 +7,7 @@ import uk.commonline.weather.model.Location;
 import uk.commonline.weather.model.Weather;
 
 public interface WeatherDAO extends Dao<Weather> {
-	
-	List<Weather> recentForLocation(final Location location);
+
+    List<Weather> recentForRegion(final long region);
 
 }

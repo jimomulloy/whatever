@@ -4,9 +4,9 @@
 
 
 <html lang="en">
-
+<head>
 <jsp:include page="fragments/headTag.jsp"/>
-
+</head>
 <body>
 <div class="container">
     <jsp:include page="fragments/bodyHeader.jsp"/>

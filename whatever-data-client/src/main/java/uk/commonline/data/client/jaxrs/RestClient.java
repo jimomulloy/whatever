@@ -14,7 +14,8 @@ public class RestClient {
     private Client client;
     
     public RestClient() {
-    	this.cc = new ClientConfig().register(new JacksonFeature());
+    	this.cc = new ClientConfig();
+    	cc.register(new JacksonFeature());
     	this.client = ClientBuilder.newClient(cc);
     }
 
@@ -28,6 +29,17 @@ public class RestClient {
      */
     public Client getClient() {
         return client;
+    }
+
+    /**
+     * Gets rest template.
+     */
+    public void registerProvider(final Object provider) {
+	cc.register(provider);
+    }
+    
+    public void resetClient() {
+	this.client = ClientBuilder.newClient(cc);
     }
     
     /**

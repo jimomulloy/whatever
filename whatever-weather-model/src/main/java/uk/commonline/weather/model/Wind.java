@@ -6,62 +6,70 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
+
+import org.codehaus.jackson.annotate.JsonBackReference;
 
 import uk.commonline.data.model.BaseEntity;
 
-@XmlRootElement
-@Table(name="WIND")
+//@XmlRootElement
+@Table(name = "WIND")
 @Entity
-public class Wind extends BaseEntity<Wind> {
+public class Wind extends BaseEntity {
 
-	/**
+    @Override
+    public String toString() {
+	return "Wind [chill=" + chill + ", direction=" + direction + ", speed=" + speed + ", id=" + id + "]";
+    }
+
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	private String chill;
-	private String direction;
-	private String speed;
-	private Weather weather;
+    private static final long serialVersionUID = 1L;
+    private double chill = 0.0;
+    private String direction;
+    private double speed = 0.0;
 
-	public Wind() {
-	}
+    @JsonBackReference
+    private Weather weather;
 
-	@Column(name="CHILL")
-	public String getChill() {
-		return chill;
-	}
+    public Wind() {
+    }
 
-	public void setChill(String newChill) {
-		this.chill = newChill;
-	}
+    @Column(name = "CHILL")
+    public double getChill() {
+	return chill;
+    }
 
-	@Column(name="DIRECTION")
-	public  String getDirection() {
-		return direction;
-	}
+    public void setChill(double newChill) {
+	this.chill = newChill;
+    }
 
-	public  void setDirection( String newDirection) {
-		this.direction = newDirection;
-	}
+    @Column(name = "DIRECTION")
+    public String getDirection() {
+	return direction;
+    }
 
-	@Column(name="SPEED")
-	public  String getSpeed() {
-		return speed;
-	}
+    public void setDirection(String newDirection) {
+	this.direction = newDirection;
+    }
 
-	public  void setSpeed( String newSpeed) {
-		this.speed = newSpeed;
-	}
+    @Column(name = "SPEED")
+    public double getSpeed() {
+	return speed;
+    }
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "WEATHER_ID", nullable = false)
-	public Weather getWeather() {
-		return weather;
-	}
+    public void setSpeed(double newSpeed) {
+	this.speed = newSpeed;
+    }
 
-	public void setWeather(Weather weather) {
-		this.weather = weather;
-	}
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "WEATHER_ID", referencedColumnName = "id")
+    public Weather getWeather() {
+	return weather;
+    }
+
+    public void setWeather(Weather weather) {
+	this.weather = weather;
+    }
 
 }

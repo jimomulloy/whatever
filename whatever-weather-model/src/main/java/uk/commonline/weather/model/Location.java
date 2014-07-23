@@ -2,57 +2,30 @@ package uk.commonline.weather.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import uk.commonline.data.model.BaseEntity;
 import uk.commonline.data.model.ListWrapper;
+import uk.commonline.data.model.NamedEntity;
 
-@XmlRootElement
+//@XmlRootElement
 @SuppressWarnings("serial")
-@Table(name = "LOCATION")
-@Entity
-@NamedQueries({ @NamedQuery(name = "Location.uniqueByZip", query = "from Location l where l.zip = :zip") })
-public class Location extends BaseEntity<Location> {
+public class Location extends NamedEntity {
 
-    private String zip;
-    private String woeid;
-    private String city;
+    private String postal;
+    private String sourceid;
+    private String type;
     private String region;
+    private double altitude = 0.0;
+    private double latitude = 0.0;
+    private double longitude = 0.0;
+    private String geobase;
+    private long geobaseid = 0;
     private String country;
-
-    private Source source;
 
     public Location() {
     }
 
-    @Column(name = "ZIP")
-    public String getZip() {
-	return zip;
-    }
-
-    public void setZip(String zip) {
-	this.zip = zip;
-    }
-
-    @Column(name = "CITY")
-    public String getCity() {
-	return city;
-    }
-
-    public void setCity(String city) {
-	this.city = city;
-    }
-
-    @Column(name = "REGION")
     public String getRegion() {
 	return region;
     }
@@ -61,7 +34,6 @@ public class Location extends BaseEntity<Location> {
 	this.region = region;
     }
 
-    @Column(name = "COUNTRY")
     public String getCountry() {
 	return country;
     }
@@ -70,53 +42,74 @@ public class Location extends BaseEntity<Location> {
 	this.country = country;
     }
 
-    @Column(name = "WOEID")
-    public String getWoeid() {
-	return woeid;
-    }
-
-    public void setWoeid(String woeid) {
-	this.woeid = woeid;
-    }
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "SOURCE_ID", nullable = false)
-    public Source getSource() {
-	return source;
-    }
-
-    public void setSource(Source source) {
-	this.source = source;
-    }
-
-    @XmlRootElement(name = "locations")
-    public static class LocationListWrapper implements ListWrapper<Location> {
-	private List<Location> list;
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.springinpractice.ch11.model.ListWrapper#getList()
-	 */
-	@Override
-	@XmlElement(name = "location")
-	public List<Location> getList() {
-	    return list;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.springinpractice.ch11.model.ListWrapper#setList(java.util.List)
-	 */
-	@Override
-	public void setList(List<Location> list) {
-	    this.list = list;
-	}
-    }
-
+    @Override
     public String toString() {
-	return "WTW Location woeid:" + woeid;
+	return "Location [postal=" + postal + ", sourceid=" + sourceid + ", type=" + type + ", region=" + region + ", altitude=" + altitude
+		+ ", latitude=" + latitude + ", longitude=" + longitude + ", geobase=" + geobase + ", geobaseid=" + geobaseid + ", country="
+		+ country + ", id=" + id + "]";
+    }
+
+    public String getPostal() {
+	return postal;
+    }
+
+    public void setPostal(String postal) {
+	this.postal = postal;
+    }
+
+    public String getType() {
+	return type;
+    }
+
+    public void setType(String type) {
+	this.type = type;
+    }
+
+    public double getAltitude() {
+	return altitude;
+    }
+
+    public void setAltitude(double altitude) {
+	this.altitude = altitude;
+    }
+
+    public double getLatitude() {
+	return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+	this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+	return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+	this.longitude = longitude;
+    }
+
+    public String getGeobase() {
+	return geobase;
+    }
+
+    public void setGeobase(String geobase) {
+	this.geobase = geobase;
+    }
+
+    public long getGeobaseid() {
+	return geobaseid;
+    }
+
+    public void setGeobaseid(long geobaseid) {
+	this.geobaseid = geobaseid;
+    }
+
+    public String getSourceid() {
+	return sourceid;
+    }
+
+    public void setSourceid(String sourceid) {
+	this.sourceid = sourceid;
     }
 }

@@ -19,7 +19,7 @@ import uk.commonline.data.model.EI;
 
 /**
  */
-public abstract class AbstractCrudServiceTests<T extends EI<T>> {
+public abstract class AbstractCrudServiceTests<T extends EI> {
 	protected static final String VN_CREATE_ENTITY_FORM = "createEntityForm";
 	protected static final String VN_DELETE_ENTITY_SUCCESS = "deleteEntitySuccess";
 	protected static final String VN_EDIT_ENTITY_FORM = "editEntityForm";
