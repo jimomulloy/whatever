@@ -7,6 +7,8 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -50,7 +52,7 @@ public class WeatherListMessenger implements MessageBodyWriter<List<Weather>>, M
 	}
     };
 
-    Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, ser).registerTypeAdapter(Date.class, deser).create();
+    Gson gson = new GsonBuilder().registerTypeAdapter(java.sql.Date.class, ser).registerTypeAdapter(Date.class, ser).registerTypeAdapter(java.sql.Date.class, deser).registerTypeAdapter(Date.class, deser).create();
 
     private Gson getGson() {
 	if (gson == null) {
@@ -85,7 +87,9 @@ public class WeatherListMessenger implements MessageBodyWriter<List<Weather>>, M
 	    for (Weather w : t) {
 		w.clearBackReferences();
 	    }
+	    System.out.println("!!writeTo:"+t);
 	    getGson().toJson(t, jsonType, writer);
+	    
 	} finally {
 	    writer.close();
 	}
@@ -114,8 +118,8 @@ public class WeatherListMessenger implements MessageBodyWriter<List<Weather>>, M
 	    }
 	    return weather;
 	} catch (Exception ex) {
+	    System.out.println("!!readFrom"); 
 	    ex.printStackTrace();
-	    System.out.println("!!");
 	    return null;
 	} finally {
 	    streamReader.close();

@@ -27,8 +27,10 @@ import uk.commonline.data.model.ListWrapper;
 @Table(name = "WEATHER")
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@NamedQueries({ @NamedQuery(name = "Weather.byRegion", query = "from Weather w where w.region = :region and w.writeTime >= :date"),
-	@NamedQuery(name = "Weather.since", query = "from Weather w where w.writeTime >= :date") })
+//@NamedQueries({ @NamedQuery(name = "Weather.byRegion", query = "from Weather w where w.region = :region and w.writeTime >= :fromTime and not exists (from WeatherForecast wf where wf.id = w.id) "),
+//	@NamedQuery(name = "Weather.range", query = "from Weather w where w.region = :region and w.writeTime >= :fromTime and not exists (from WeatherForecast wf where wf.id = w.id) " )})
+@NamedQueries({ @NamedQuery(name = "Weather.byRegion", query = "from Weather w where w.region = :region and w.writeTime >= :fromTime and w.forecast = false"),
+    @NamedQuery(name = "Weather.range", query = "from Weather w where w.region = :region and w.writeTime >= :fromTime and w.writeTime <= :toTime and w.forecast = false" )})
 public class Weather extends BaseEntity {
 
     private long region = 0;
@@ -47,6 +49,17 @@ public class Weather extends BaseEntity {
     private Date sourceTime = new Date();
 
     private String source;
+
+    private boolean forecast = false;
+
+    @Column(name = "FORECAST") 
+    public boolean isForecast() {
+        return forecast;
+    }
+
+    public void setForecast(boolean forecast) {
+        this.forecast = forecast;
+    }
 
     @JsonManagedReference
     private Precipitation precipitation;
@@ -90,7 +103,7 @@ public class Weather extends BaseEntity {
 	this.atmosphere = atmosphere;
     }
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "WRITETIME")
     public Date getWriteTime() {
 	return writeTime;
@@ -100,7 +113,7 @@ public class Weather extends BaseEntity {
 	this.writeTime = writeTime;
     }
     
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "SOURCETIME")
     public Date getSourceTime() {
 	return sourceTime;

@@ -17,6 +17,10 @@ import uk.commonline.data.model.EI;
 @Table(name = "WEATHERFORECAST")
 @Entity
 @PrimaryKeyJoinColumn(name = "WEATHER_ID")
+@NamedQueries({ @NamedQuery(name = "WeatherForecast.byRegion", query = "from WeatherForecast wf where wf.region = :region and wf.writeTime >= :fromTime"),
+    @NamedQuery(name = "WeatherForecast.range", query = "from WeatherForecast wf where wf.region = :region and wf.writeTime >= :fromTime and wf.writeTime <= :toTime"),
+    @NamedQuery(name = "WeatherForecast.retro", query = "from WeatherForecast wf where wf.region = :region "
+            + "and wf.writeTime >= :fromTime and wf.writeTime <= :toTime and wf.periodTo >= :forecastTime and wf.periodFrom <= :forecastTime")})
 public class WeatherForecast extends Weather  {
 
     private Date periodFrom = new Date();
@@ -24,15 +28,16 @@ public class WeatherForecast extends Weather  {
     private Date periodTo = new Date();
 
     public WeatherForecast() {
+        setForecast(true);
     }
-
-    @Temporal(TemporalType.DATE)
+    
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "PERIODFROM")
     public Date getPeriodFrom() {
 	return periodFrom;
     }
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "PERIODTO")
     public Date getPeriodTo() {
 	return periodTo;

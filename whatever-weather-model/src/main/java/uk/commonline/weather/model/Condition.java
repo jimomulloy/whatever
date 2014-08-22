@@ -91,7 +91,7 @@ public class Condition extends BaseEntity{
 	this.weather = weather;
     }
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "TOTIME")
     public Date getToTime() {
 	return toTime;
@@ -101,7 +101,7 @@ public class Condition extends BaseEntity{
 	this.toTime = toTime;
     }
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "FROMTIME")
     public Date getFromTime() {
 	return fromTime;
