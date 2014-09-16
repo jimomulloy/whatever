@@ -26,28 +26,28 @@ public class SourceParameter extends NamedEntity {
     public SourceParameter() {
     }
 
-    @Column(name = "VALUE")
-    public String getValue() {
-	return value;
-    }
-
-    public void setValue(String value) {
-	this.value = value;
-    }
-
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "SOURCE_ID", nullable = false)
     @XmlTransient
     public Source getSource() {
-	return source;
+        return source;
+    }
+
+    @Column(name = "VALUE")
+    public String getValue() {
+        return value;
     }
 
     public void setSource(Source source) {
-	this.source = source;
+        this.source = source;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 
     @Override
     public String toString() {
-	return "SourceParameter [value=" + value + ", source=" + source + ", id=" + id + "]";
+        return "SourceParameter [value=" + value + ", source=" + source + ", id=" + id + "]";
     }
 }

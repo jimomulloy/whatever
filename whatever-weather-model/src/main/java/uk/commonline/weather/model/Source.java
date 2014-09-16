@@ -1,16 +1,11 @@
 package uk.commonline.weather.model;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 
-import uk.commonline.data.model.ListWrapper;
 import uk.commonline.data.model.NamedEntity;
 
 //@XmlRootElement
@@ -27,15 +22,15 @@ public class Source extends NamedEntity {
 
     @Column(name = "URL")
     public String getUrl() {
-	return url;
+        return url;
     }
 
     public void setUrl(String url) {
-	this.url = url;
+        this.url = url;
     }
 
     @Override
     public String toString() {
-	return "Source [url=" + url + ", id=" + id + "]";
+        return "Source [url=" + url + ", id=" + id + "]";
     }
 }

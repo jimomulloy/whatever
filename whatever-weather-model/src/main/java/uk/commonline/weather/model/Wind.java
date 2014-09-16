@@ -16,19 +16,14 @@ import uk.commonline.data.model.BaseEntity;
 @Entity
 public class Wind extends BaseEntity {
 
-    @Override
-    public String toString() {
-	return "Wind [chill=" + chill + ", direction=" + direction + ", speed=" + speed + ", id=" + id + "]";
-    }
-
     /**
 	 * 
 	 */
     private static final long serialVersionUID = 1L;
+
     private double chill = 0.0;
     private String direction;
     private double speed = 0.0;
-
     @JsonBackReference
     private Weather weather;
 
@@ -37,39 +32,44 @@ public class Wind extends BaseEntity {
 
     @Column(name = "CHILL")
     public double getChill() {
-	return chill;
-    }
-
-    public void setChill(double newChill) {
-	this.chill = newChill;
+        return chill;
     }
 
     @Column(name = "DIRECTION")
     public String getDirection() {
-	return direction;
-    }
-
-    public void setDirection(String newDirection) {
-	this.direction = newDirection;
+        return direction;
     }
 
     @Column(name = "SPEED")
     public double getSpeed() {
-	return speed;
-    }
-
-    public void setSpeed(double newSpeed) {
-	this.speed = newSpeed;
+        return speed;
     }
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "WEATHER_ID", referencedColumnName = "id")
     public Weather getWeather() {
-	return weather;
+        return weather;
+    }
+
+    public void setChill(double newChill) {
+        this.chill = newChill;
+    }
+
+    public void setDirection(String newDirection) {
+        this.direction = newDirection;
+    }
+
+    public void setSpeed(double newSpeed) {
+        this.speed = newSpeed;
     }
 
     public void setWeather(Weather weather) {
-	this.weather = weather;
+        this.weather = weather;
+    }
+
+    @Override
+    public String toString() {
+        return "Wind [chill=" + chill + ", direction=" + direction + ", speed=" + speed + ", id=" + id + "]";
     }
 
 }

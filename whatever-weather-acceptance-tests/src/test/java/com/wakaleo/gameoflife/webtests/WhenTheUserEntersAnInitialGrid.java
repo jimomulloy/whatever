@@ -1,18 +1,17 @@
 package com.wakaleo.gameoflife.webtests;
 
-import com.wakaleo.gameoflife.webtests.requirements.GameOfLifeApplication;
-import com.wakaleo.gameoflife.webtests.steps.PlayerSteps;
-import net.thucydides.core.annotations.Feature;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.ManagedPages;
 import net.thucydides.core.annotations.Steps;
-import net.thucydides.core.annotations.Story;
 import net.thucydides.core.annotations.WithTag;
 import net.thucydides.core.pages.Pages;
 import net.thucydides.junit.runners.ThucydidesRunner;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
+
+import com.wakaleo.gameoflife.webtests.steps.PlayerSteps;
 
 @RunWith(ThucydidesRunner.class)
 @WithTag("Starting a new simulation")
@@ -27,28 +26,7 @@ public class WhenTheUserEntersAnInitialGrid {
     @Steps
     PlayerSteps player;
 
-
-    final static String[][] EMPTY_GRID
-            = new String[][]{{".", ".", "."},
-            {".", ".", "."},
-            {".", ".", "."}};
-
-
-    @Test
-    public void userShouldBeAbleChooseToCreateANewGameOnTheHomePage() {
-        player.opens_home_page();
-        player.chooses_to_start_a_new_game();
-        player.should_see_a_page_containing_text("Please seed your universe");
-
-    }
-
-    @Test
-    public void userShouldBeAbleToSeedAnEmptyGridOnTheNewGamePage() {
-        player.opens_home_page();
-        player.chooses_to_start_a_new_game();
-        player.starts_simulation();
-        player.should_see_grid(EMPTY_GRID);
-    }
+    final static String[][] EMPTY_GRID = new String[][] { { ".", ".", "." }, { ".", ".", "." }, { ".", ".", "." } };
 
     @Test
     public void theGridDisplayPageShouldContainANextGenerationButton() {
@@ -59,17 +37,19 @@ public class WhenTheUserEntersAnInitialGrid {
     }
 
     @Test
-    public void userShouldBeAbleToEnterOneLiveCellInTheGrid() {
+    public void theGridPageShouldHaveALinkBackToTheHomePage() {
         player.opens_home_page();
         player.chooses_to_start_a_new_game();
-        player.clicks_on_cell_at(1, 1);
-        player.starts_simulation();
+        player.clicks_on_home();
+        player.should_see_a_page_containing_text("Welcome to Conway's Game Of Life");
+    }
 
-        String[][] expectedGrid = new String[][]{{".", ".", "."},
-                {".", "*", "."},
-                {".", ".", "."}};
+    @Test
+    public void userShouldBeAbleChooseToCreateANewGameOnTheHomePage() {
+        player.opens_home_page();
+        player.chooses_to_start_a_new_game();
+        player.should_see_a_page_containing_text("Please seed your universe");
 
-        player.should_see_grid(expectedGrid);
     }
 
     @Test
@@ -81,19 +61,28 @@ public class WhenTheUserEntersAnInitialGrid {
         player.clicks_on_cell_at(1, 1);
         player.starts_simulation();
 
-        String[][] expectedGrid = new String[][]{{"*", "*", "."},
-                {".", "*", "."},
-                {".", ".", "."}};
+        String[][] expectedGrid = new String[][] { { "*", "*", "." }, { ".", "*", "." }, { ".", ".", "." } };
 
         player.should_see_grid(expectedGrid);
     }
 
-
     @Test
-    public void theGridPageShouldHaveALinkBackToTheHomePage() {
+    public void userShouldBeAbleToEnterOneLiveCellInTheGrid() {
         player.opens_home_page();
         player.chooses_to_start_a_new_game();
-        player.clicks_on_home();
-        player.should_see_a_page_containing_text("Welcome to Conway's Game Of Life");
+        player.clicks_on_cell_at(1, 1);
+        player.starts_simulation();
+
+        String[][] expectedGrid = new String[][] { { ".", ".", "." }, { ".", "*", "." }, { ".", ".", "." } };
+
+        player.should_see_grid(expectedGrid);
+    }
+
+    @Test
+    public void userShouldBeAbleToSeedAnEmptyGridOnTheNewGamePage() {
+        player.opens_home_page();
+        player.chooses_to_start_a_new_game();
+        player.starts_simulation();
+        player.should_see_grid(EMPTY_GRID);
     }
 }

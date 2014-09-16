@@ -5,7 +5,6 @@ import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import uk.commonline.weather.model.WeatherUserLogin;
 
@@ -15,9 +14,9 @@ public class HomeController {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String showHomePage(Map<String, Object> model) {
-	WeatherUserLogin weatherUser = new WeatherUserLogin();
-	model.put("weatherUser", weatherUser);
-	return "home";
+        WeatherUserLogin weatherUser = new WeatherUserLogin();
+        model.put("weatherUser", weatherUser);
+        return "home";
     }
 
 }

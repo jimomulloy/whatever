@@ -1,6 +1,5 @@
 package uk.commonline.weather.model;
 
-
 //@XmlRootElement
 public class Region {
     public double longitude;
@@ -12,6 +11,6 @@ public class Region {
 
     @Override
     public String toString() {
-	return "Region [longitude=" + longitude + ", latitude=" + latitude + ", region=" + region + "]";
+        return "Region [longitude=" + longitude + ", latitude=" + latitude + ", region=" + region + "]";
     }
 }

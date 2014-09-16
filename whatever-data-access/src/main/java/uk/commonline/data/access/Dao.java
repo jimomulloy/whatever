@@ -6,6 +6,8 @@ import uk.commonline.data.model.EI;
 
 public interface Dao<T extends EI> {
 
+    long count();
+
     /**
      * <p>
      * If the passed object has a <code>setDateCreated(Date)</code> method then
@@ -17,6 +19,25 @@ public interface Dao<T extends EI> {
     T create(T t);
 
     /**
+     * Updates the EI if there aren't any errors. Can potentially generate new
+     * errors (e.g. constraint violations).
+     * 
+     * @param ei
+     *            EI to update
+     * @param errors
+     *            errors object
+     */
+    // void update(T ei, Errors errors);
+
+    void delete(T t);
+
+    void deleteAll();
+
+    void deleteById(Long id);
+
+    boolean exists(Long id);
+
+    /**
      * Finds the requested object in the repository and returns it, or null if
      * there is no such persistent instance.
      * 
@@ -25,6 +46,8 @@ public interface Dao<T extends EI> {
      * @return requested object, or null
      */
     T get(Long id);
+
+    List<T> getAll();
 
     /**
      * <p>
@@ -44,28 +67,5 @@ public interface Dao<T extends EI> {
      */
     T load(Long id);
 
-    List<T> getAll();
-
     T update(T t);
-
-    /**
-     * Updates the EI if there aren't any errors. Can potentially generate new
-     * errors (e.g. constraint violations).
-     * 
-     * @param ei
-     *            EI to update
-     * @param errors
-     *            errors object
-     */
-    // void update(T ei, Errors errors);
-
-    void delete(T t);
-
-    void deleteById(Long id);
-
-    void deleteAll();
-
-    long count();
-
-    boolean exists(Long id);
 }

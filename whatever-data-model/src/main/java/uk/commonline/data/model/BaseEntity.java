@@ -1,8 +1,6 @@
 package uk.commonline.data.model;
 
 //import java.beans.Transient;
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,41 +23,43 @@ public abstract class BaseEntity implements EI {
 
     protected Long id;
 
-    public void setId(Long id) {
-	this.id = id;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        BaseEntity that = (BaseEntity) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null)
+            return false;
+
+        return true;
     }
 
+    @Override
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     public Long getId() {
-	return id;
+        return id;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 
     @Transient
     @XmlTransient
     public boolean isNew() {
-	return (this.id == null);
+        return (this.id == null);
     }
 
     @Override
-    public boolean equals(Object o) {
-	if (this == o)
-	    return true;
-	if (o == null || getClass() != o.getClass())
-	    return false;
-
-	BaseEntity that = (BaseEntity) o;
-
-	if (id != null ? !id.equals(that.id) : that.id != null)
-	    return false;
-
-	return true;
-    }
-
-    @Override
-    public int hashCode() {
-	return id != null ? id.hashCode() : 0;
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }

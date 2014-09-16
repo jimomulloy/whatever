@@ -12,8 +12,8 @@ public class WeatherReaderInterceptor implements ReaderInterceptor {
 
     @Override
     public Object aroundReadFrom(ReaderInterceptorContext context) throws IOException, WebApplicationException {
-	// final InputStream originalInputStream = context.getInputStream();
-	// context.setInputStream(new GZIPInputStream(originalInputStream));
-	return context.proceed();
+        // final InputStream originalInputStream = context.getInputStream();
+        // context.setInputStream(new GZIPInputStream(originalInputStream));
+        return context.proceed();
     }
 }

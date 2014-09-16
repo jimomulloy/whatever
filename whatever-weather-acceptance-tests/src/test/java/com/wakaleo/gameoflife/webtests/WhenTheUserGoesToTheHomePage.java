@@ -1,7 +1,5 @@
 package com.wakaleo.gameoflife.webtests;
 
-import com.wakaleo.gameoflife.webtests.requirements.GameOfLifeApplication.RunSimulations.RunASimulation;
-import com.wakaleo.gameoflife.webtests.steps.PlayerSteps;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.ManagedPages;
 import net.thucydides.core.annotations.Steps;
@@ -9,13 +7,16 @@ import net.thucydides.core.annotations.Story;
 import net.thucydides.core.annotations.WithTag;
 import net.thucydides.core.pages.Pages;
 import net.thucydides.junit.runners.ThucydidesRunner;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
+import com.wakaleo.gameoflife.webtests.requirements.GameOfLifeApplication.RunSimulations.RunASimulation;
+import com.wakaleo.gameoflife.webtests.steps.PlayerSteps;
+
 @RunWith(ThucydidesRunner.class)
 @Story(RunASimulation.class)
-
 @WithTag("Viewing previous games")
 public class WhenTheUserGoesToTheHomePage {
 

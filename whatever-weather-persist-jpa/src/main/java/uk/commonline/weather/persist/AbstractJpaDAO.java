@@ -68,7 +68,6 @@ public abstract class AbstractJpaDAO<T extends EI<T>> implements Dao<T>{
 	@Override
 	public T update(final T entity) {
 		notNull(entity, clazz.getName() + " can't be null");
-		System.out.println("!Update entity:"+entity);
 		entityManager.merge(entity);
 		return entity;
 	}

@@ -1,6 +1,7 @@
 package com.wakaleo.gameoflife.webtests.pages;
 
 import net.thucydides.core.annotations.DefaultUrl;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,14 +17,13 @@ public class EnterGridPage extends GameOfLifePage {
         super(driver);
     }
 
-    public void clickOnGoButton() {
-        clickOn(goButton);
-    }
-
     public void clickOnCellAt(int row, int column) {
         String cellName = "cell_" + row + "_" + column;
         getDriver().findElement(By.name(cellName)).click();
     }
 
+    public void clickOnGoButton() {
+        clickOn(goButton);
+    }
 
 }

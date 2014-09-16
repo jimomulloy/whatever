@@ -13,7 +13,7 @@ import uk.commonline.data.client.RestClientProperties;
 
 public class RestClient {
 
-    //final Logger logger = LoggerFactory.getLogger(getClass());
+    // final Logger logger = LoggerFactory.getLogger(getClass());
 
     private final RestTemplate template;
     private final RestClientProperties clientProperties;
@@ -21,24 +21,11 @@ public class RestClient {
     private final HttpClientBuilder httpClientBuilder;
 
     @Autowired
-    public RestClient(RestTemplate template, RestClientProperties clientProperties,
-                      DefaultHttpClient httpClient) {
+    public RestClient(RestTemplate template, RestClientProperties clientProperties, DefaultHttpClient httpClient) {
         this.template = template;
         this.clientProperties = clientProperties;
         this.httpClient = httpClient;
         this.httpClientBuilder = null;
-    }
-
-    @PostConstruct
-    public void init() {
-        setCredentials(clientProperties.getUsername(), clientProperties.getPassword());
-    }
-
-    /**
-     * Gets rest template.
-     */
-    public RestTemplate getRestTemplate() {
-        return template;
     }
 
     /**
@@ -51,17 +38,28 @@ public class RestClient {
         sb.append(clientProperties.getApiPath());
         sb.append(uri);
 
-        //logger.debug("URL is '{}'.", sb.toString());
+        // logger.debug("URL is '{}'.", sb.toString());
 
         return sb.toString();
+    }
+
+    /**
+     * Gets rest template.
+     */
+    public RestTemplate getRestTemplate() {
+        return template;
+    }
+
+    @PostConstruct
+    public void init() {
+        setCredentials(clientProperties.getUsername(), clientProperties.getPassword());
     }
 
     /**
      * Set default credentials on HTTP client.
      */
     public void setCredentials(String userName, String password) {
-        UsernamePasswordCredentials creds =
-                new UsernamePasswordCredentials(clientProperties.getUsername(), clientProperties.getPassword());
+        UsernamePasswordCredentials creds = new UsernamePasswordCredentials(clientProperties.getUsername(), clientProperties.getPassword());
         AuthScope authScope = new AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT, AuthScope.ANY_REALM);
 
         httpClient.getCredentialsProvider().setCredentials(authScope, creds);

@@ -19,47 +19,49 @@ import uk.commonline.weather.model.WeatherReport;
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
 public class WeatherIntegrationTest extends TestCase {
 
+    class Runner implements Runnable {
+        double lat, lon;
+
+        public Runner(double lat, double lon) {
+            this.lat = lat;
+            this.lon = lon;
+        }
+
+        @Override
+        public void run() {
+            try {
+                System.out.println("!!Run Weather report lat:" + lat + ", lon:" + lon);
+                WeatherReport weathers = WeatherIntegrationTest.this.weatherManClient.updateWeather(lat, lon);
+                System.out.println("!!Received Weather report lat:" + lat + ", lon:" + lon + " size:" + weathers.getSourceMap().size());
+                // assertEquals("Invalid region", 1, region);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+
+            }
+            lock.countDown();
+        }
+    }
+
     @Inject
     private WeatherManClient weatherManClient;
+
+    /** Countdown latch */
+    private CountDownLatch lock = new CountDownLatch(2);
 
     @Test
     public void dummy() throws Exception {
 
     }
 
-    /** Countdown latch */
-    private CountDownLatch lock = new CountDownLatch(2);
-    //@Test
+    // @Test
     public void test() throws Exception {
-	Thread t = new Thread(new Runner(50, 0));
-	t.start();
-	//Thread t2 = new Thread(new Runner(30, 10));
-	//t2.start();
+        Thread t = new Thread(new Runner(50, 0));
+        t.start();
+        // Thread t2 = new Thread(new Runner(30, 10));
+        // t2.start();
 
-	lock.await(30000, TimeUnit.MILLISECONDS);
+        lock.await(30000, TimeUnit.MILLISECONDS);
 
-	// assertEquals("Invalid region", 1, region);
-    }
-
-    class Runner implements Runnable {
-	double lat, lon;
-
-	public Runner(double lat, double lon) {
-	    this.lat = lat;
-	    this.lon = lon;
-	}
-
-	public void run() {
-	    try {
-		System.out.println("!!Run Weather report lat:" + lat + ", lon:" + lon);
-		WeatherReport weathers = WeatherIntegrationTest.this.weatherManClient.updateWeather(lat, lon);
-		System.out.println("!!Received Weather report lat:" + lat + ", lon:" + lon + " size:" + weathers.getSourceMap().size());
-		// assertEquals("Invalid region", 1, region);
-	    } catch (Exception ex) {
-		ex.printStackTrace();
-
-	    }
-	    lock.countDown();
-	}
+        // assertEquals("Invalid region", 1, region);
     }
 }

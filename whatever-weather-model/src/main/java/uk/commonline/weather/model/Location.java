@@ -1,11 +1,5 @@
 package uk.commonline.weather.model;
 
-import java.util.List;
-
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
-import uk.commonline.data.model.ListWrapper;
 import uk.commonline.data.model.NamedEntity;
 
 //@XmlRootElement
@@ -26,90 +20,90 @@ public class Location extends NamedEntity {
     public Location() {
     }
 
-    public String getRegion() {
-	return region;
-    }
-
-    public void setRegion(String region) {
-	this.region = region;
+    public double getAltitude() {
+        return altitude;
     }
 
     public String getCountry() {
-	return country;
+        return country;
+    }
+
+    public String getGeobase() {
+        return geobase;
+    }
+
+    public long getGeobaseid() {
+        return geobaseid;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public String getPostal() {
+        return postal;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public String getSourceid() {
+        return sourceid;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setAltitude(double altitude) {
+        this.altitude = altitude;
     }
 
     public void setCountry(String country) {
-	this.country = country;
+        this.country = country;
+    }
+
+    public void setGeobase(String geobase) {
+        this.geobase = geobase;
+    }
+
+    public void setGeobaseid(long geobaseid) {
+        this.geobaseid = geobaseid;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setPostal(String postal) {
+        this.postal = postal;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public void setSourceid(String sourceid) {
+        this.sourceid = sourceid;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     @Override
     public String toString() {
-	return "Location [postal=" + postal + ", sourceid=" + sourceid + ", type=" + type + ", region=" + region + ", altitude=" + altitude
-		+ ", latitude=" + latitude + ", longitude=" + longitude + ", geobase=" + geobase + ", geobaseid=" + geobaseid + ", country="
-		+ country + ", id=" + id + "]";
-    }
-
-    public String getPostal() {
-	return postal;
-    }
-
-    public void setPostal(String postal) {
-	this.postal = postal;
-    }
-
-    public String getType() {
-	return type;
-    }
-
-    public void setType(String type) {
-	this.type = type;
-    }
-
-    public double getAltitude() {
-	return altitude;
-    }
-
-    public void setAltitude(double altitude) {
-	this.altitude = altitude;
-    }
-
-    public double getLatitude() {
-	return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-	this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-	return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-	this.longitude = longitude;
-    }
-
-    public String getGeobase() {
-	return geobase;
-    }
-
-    public void setGeobase(String geobase) {
-	this.geobase = geobase;
-    }
-
-    public long getGeobaseid() {
-	return geobaseid;
-    }
-
-    public void setGeobaseid(long geobaseid) {
-	this.geobaseid = geobaseid;
-    }
-
-    public String getSourceid() {
-	return sourceid;
-    }
-
-    public void setSourceid(String sourceid) {
-	this.sourceid = sourceid;
+        return "Location [postal=" + postal + ", sourceid=" + sourceid + ", type=" + type + ", region=" + region + ", altitude=" + altitude
+                + ", latitude=" + latitude + ", longitude=" + longitude + ", geobase=" + geobase + ", geobaseid=" + geobaseid + ", country="
+                + country + ", id=" + id + "]";
     }
 }

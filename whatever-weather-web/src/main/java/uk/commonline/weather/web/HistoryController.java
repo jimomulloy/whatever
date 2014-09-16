@@ -26,47 +26,45 @@ public class HistoryController {
     @Inject
     private WeatherManClient weatherManClient;
 
-    @RequestMapping(value = "/history", method = RequestMethod.GET)
-    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-	String latitude = request.getParameter("latitude");
-	String longitude = request.getParameter("longitude");
-
-	List<Weather> weathers;
-	WeatherReport weatherReport = weatherManClient.updateWeather(Long.parseLong(latitude), Long.parseLong(longitude));
-	WeatherReport report = weatherManClient.updateWeather(Double.parseDouble(latitude), Double.parseDouble(longitude));
-	Double latValue = 0.0, longValue = 0.0;
-	try{
-	    latValue = Double.parseDouble(latitude);
-	}
-	catch (Exception ex){
-	    
-	}
-	try{
-	    longValue = Double.parseDouble(longitude);
-	}
-	catch (Exception ex){
-	    
-	}
-	report.setLatitude(latValue);
-	report.setLongitude(longValue);
-	return new ModelAndView("history", "history", report);
+    public GeoLocationClient getGeoLocationService() {
+        return geoLocationClient;
     }
 
     public WeatherManClient getWeatherManService() {
-	return weatherManClient;
+        return weatherManClient;
     }
 
-    public void setWeatherManService(WeatherManClient weatherManClient) {
-	this.weatherManClient = weatherManClient;
-    }
+    @RequestMapping(value = "/history", method = RequestMethod.GET)
+    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    public GeoLocationClient getGeoLocationService() {
-	return geoLocationClient;
+        String latitude = request.getParameter("latitude");
+        String longitude = request.getParameter("longitude");
+
+        List<Weather> weathers;
+        WeatherReport weatherReport = weatherManClient.updateWeather(Long.parseLong(latitude), Long.parseLong(longitude));
+        WeatherReport report = weatherManClient.updateWeather(Double.parseDouble(latitude), Double.parseDouble(longitude));
+        Double latValue = 0.0, longValue = 0.0;
+        try {
+            latValue = Double.parseDouble(latitude);
+        } catch (Exception ex) {
+
+        }
+        try {
+            longValue = Double.parseDouble(longitude);
+        } catch (Exception ex) {
+
+        }
+        report.setLatitude(latValue);
+        report.setLongitude(longValue);
+        return new ModelAndView("history", "history", report);
     }
 
     public void setGeoLocationService(GeoLocationClient geoLocationClient) {
-	this.geoLocationClient = geoLocationClient;
+        this.geoLocationClient = geoLocationClient;
+    }
+
+    public void setWeatherManService(WeatherManClient weatherManClient) {
+        this.weatherManClient = weatherManClient;
     }
 
 }

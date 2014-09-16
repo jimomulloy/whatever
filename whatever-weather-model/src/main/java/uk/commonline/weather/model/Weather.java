@@ -1,7 +1,6 @@
 package uk.commonline.weather.model;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,23 +13,23 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import org.codehaus.jackson.annotate.JsonManagedReference;
 
 import uk.commonline.data.model.BaseEntity;
-import uk.commonline.data.model.EI;
-import uk.commonline.data.model.ListWrapper;
 
 @SuppressWarnings("serial")
 @Table(name = "WEATHER")
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-//@NamedQueries({ @NamedQuery(name = "Weather.byRegion", query = "from Weather w where w.region = :region and w.writeTime >= :fromTime and not exists (from WeatherForecast wf where wf.id = w.id) "),
-//	@NamedQuery(name = "Weather.range", query = "from Weather w where w.region = :region and w.writeTime >= :fromTime and not exists (from WeatherForecast wf where wf.id = w.id) " )})
-@NamedQueries({ @NamedQuery(name = "Weather.byRegion", query = "from Weather w where w.region = :region and w.writeTime >= :fromTime and w.forecast = false"),
-    @NamedQuery(name = "Weather.range", query = "from Weather w where w.region = :region and w.writeTime >= :fromTime and w.writeTime <= :toTime and w.forecast = false" )})
+// @NamedQueries({ @NamedQuery(name = "Weather.byRegion", query =
+// "from Weather w where w.region = :region and w.writeTime >= :fromTime and not exists (from WeatherForecast wf where wf.id = w.id) "),
+// @NamedQuery(name = "Weather.range", query =
+// "from Weather w where w.region = :region and w.writeTime >= :fromTime and not exists (from WeatherForecast wf where wf.id = w.id) "
+// )})
+@NamedQueries({
+        @NamedQuery(name = "Weather.byRegion", query = "from Weather w where w.region = :region and w.writeTime >= :fromTime and w.forecast = false"),
+        @NamedQuery(name = "Weather.range", query = "from Weather w where w.region = :region and w.writeTime >= :fromTime and w.writeTime <= :toTime and w.forecast = false") })
 public class Weather extends BaseEntity {
 
     private long region = 0;
@@ -52,136 +51,136 @@ public class Weather extends BaseEntity {
 
     private boolean forecast = false;
 
-    @Column(name = "FORECAST") 
-    public boolean isForecast() {
-        return forecast;
-    }
-
-    public void setForecast(boolean forecast) {
-        this.forecast = forecast;
-    }
-
     @JsonManagedReference
     private Precipitation precipitation;
 
     public Weather() {
     }
 
-    @Column(name = "REGION")
-    public long getRegion() {
-	return region;
-    }
+    public void clearBackReferences() {
+        if (atmosphere != null) {
+            atmosphere.setWeather(null);
 
-    public void setRegion(long region) {
-	this.region = region;
-    }
+        }
+        if (condition != null) {
+            condition.setWeather(null);
 
-    @OneToOne(mappedBy = "weather", cascade = CascadeType.ALL)
-    public Condition getCondition() {
-	return condition;
-    }
+        }
+        if (wind != null) {
+            wind.setWeather(null);
 
-    public void setCondition(Condition newCondition) {
-	this.condition = newCondition;
-    }
+        }
+        if (precipitation != null) {
+            precipitation.setWeather(null);
 
-    @OneToOne(mappedBy = "weather", cascade = CascadeType.ALL)
-    public Wind getWind() {
-	return wind;
-    }
-
-    public void setWind(Wind wind) {
-	this.wind = wind;
+        }
     }
 
     @OneToOne(mappedBy = "weather", cascade = CascadeType.ALL)
     public Atmosphere getAtmosphere() {
-	return atmosphere;
+        return atmosphere;
     }
 
-    public void setAtmosphere(Atmosphere atmosphere) {
-	this.atmosphere = atmosphere;
+    @OneToOne(mappedBy = "weather", cascade = CascadeType.ALL)
+    public Condition getCondition() {
+        return condition;
+    }
+
+    @OneToOne(mappedBy = "weather", cascade = CascadeType.ALL)
+    public Precipitation getPrecipitation() {
+        return precipitation;
+    }
+
+    @Column(name = "REGION")
+    public long getRegion() {
+        return region;
+    }
+
+    @Column(name = "SOURCE")
+    public String getSource() {
+        return source;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "SOURCETIME")
+    public Date getSourceTime() {
+        return sourceTime;
+    }
+
+    @OneToOne(mappedBy = "weather", cascade = CascadeType.ALL)
+    public Wind getWind() {
+        return wind;
     }
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "WRITETIME")
     public Date getWriteTime() {
-	return writeTime;
+        return writeTime;
     }
 
-    public void setWriteTime(Date writeTime) {
-	this.writeTime = writeTime;
-    }
-    
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "SOURCETIME")
-    public Date getSourceTime() {
-	return sourceTime;
+    @Column(name = "FORECAST")
+    public boolean isForecast() {
+        return forecast;
     }
 
-    public void setSourceTime(Date sourceTime) {
-	this.sourceTime = sourceTime;
+    public void setAtmosphere(Atmosphere atmosphere) {
+        this.atmosphere = atmosphere;
     }
 
-    @Column(name = "SOURCE")
-    public String getSource() {
-	return source;
+    public void setBackReferences() {
+        if (atmosphere != null) {
+            atmosphere.setWeather(this);
+
+        }
+        if (condition != null) {
+            condition.setWeather(this);
+
+        }
+        if (wind != null) {
+            wind.setWeather(this);
+
+        }
+        if (precipitation != null) {
+            precipitation.setWeather(this);
+
+        }
+    }
+
+    public void setCondition(Condition newCondition) {
+        this.condition = newCondition;
+    }
+
+    public void setForecast(boolean forecast) {
+        this.forecast = forecast;
+    }
+
+    public void setPrecipitation(Precipitation precipitation) {
+        this.precipitation = precipitation;
+    }
+
+    public void setRegion(long region) {
+        this.region = region;
     }
 
     public void setSource(String source) {
-	this.source = source;
+        this.source = source;
+    }
+
+    public void setSourceTime(Date sourceTime) {
+        this.sourceTime = sourceTime;
+    }
+
+    public void setWind(Wind wind) {
+        this.wind = wind;
+    }
+
+    public void setWriteTime(Date writeTime) {
+        this.writeTime = writeTime;
     }
 
     @Override
     public String toString() {
-	return "Weather [region=" + region + ", condition=" + condition + ", wind=" + wind + ", atmosphere=" + atmosphere + ", writeTime="
-		+ writeTime + ", sourceTime=" + sourceTime + ", source=" + source + ", precipitation=" + precipitation + ", id=" + id + "]";
-    }
-
-    @OneToOne(mappedBy = "weather", cascade = CascadeType.ALL)
-    public Precipitation getPrecipitation() {
-	return precipitation;
-    }
-
-    public void setPrecipitation(Precipitation precipitation) {
-	this.precipitation = precipitation;
-    }
-
-    public void clearBackReferences() {
-	if (atmosphere != null) {
-	    atmosphere.setWeather(null);
-
-	}
-	if (condition != null) {
-	    condition.setWeather(null);
-
-	}
-	if (wind != null) {
-	    wind.setWeather(null);
-
-	}
-	if (precipitation != null) {
-	    precipitation.setWeather(null);
-
-	}
-    }
-
-    public void setBackReferences() {
-	if (atmosphere != null) {
-	    atmosphere.setWeather(this);
-
-	}
-	if (condition != null) {
-	    condition.setWeather(this);
-
-	}
-	if (wind != null) {
-	    wind.setWeather(this);
-
-	}
-	if (precipitation != null) {
-	    precipitation.setWeather(this);
-
-	}
+        return "Weather [region=" + region + ", condition=" + condition + ", wind=" + wind + ", atmosphere=" + atmosphere + ", writeTime="
+                + writeTime + ", sourceTime=" + sourceTime + ", source=" + source + ", precipitation=" + precipitation + ", id=" + id + "]";
     }
 }

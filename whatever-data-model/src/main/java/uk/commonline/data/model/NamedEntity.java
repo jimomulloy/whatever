@@ -17,17 +17,17 @@ public abstract class NamedEntity extends BaseEntity {
     @Column(name = "NAME")
     private String name;
 
-    public void setName(String name) {
-	this.name = name;
+    public String getName() {
+        return this.name;
     }
 
-    public String getName() {
-	return this.name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
-	return this.getName();
+        return this.getName();
     }
 
 }

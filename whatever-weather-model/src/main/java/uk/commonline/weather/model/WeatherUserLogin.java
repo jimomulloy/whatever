@@ -4,45 +4,45 @@ import javax.validation.constraints.Size;
 
 public class WeatherUserLogin {
 
-	//@NotEmpty
-	@Size(min=4, max=20)
-	private String userName;
-		
-	//@NotEmpty
-	@Size(min=4, max=8)
-	private String password;
+    // @NotEmpty
+    @Size(min = 4, max = 20)
+    private String userName;
 
-	private double latitude, longitude;
-	
-	public String getPassword() {
-		return password;
-	}
+    // @NotEmpty
+    @Size(min = 4, max = 8)
+    private String password;
 
-	public String getUserName() {
-		return userName;
-	}
+    private double latitude, longitude;
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public double getLatitude() {
+        return latitude;
+    }
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+    public double getLongitude() {
+        return longitude;
+    }
 
-	public double getLongitude() {
-	    return longitude;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setLongitude(double longitude) {
-	    this.longitude = longitude;
-	}
+    public String getUserName() {
+        return userName;
+    }
 
-	public double getLatitude() {
-	    return latitude;
-	}
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
 
-	public void setLatitude(double latitude) {
-	    this.latitude = latitude;
-	}	
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 }
