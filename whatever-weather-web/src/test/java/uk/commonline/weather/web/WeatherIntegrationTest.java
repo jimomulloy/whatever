@@ -31,7 +31,7 @@ public class WeatherIntegrationTest extends TestCase {
         public void run() {
             try {
                 System.out.println("!!Run Weather report lat:" + lat + ", lon:" + lon);
-                WeatherReport weathers = WeatherIntegrationTest.this.weatherManClient.updateWeather(lat, lon);
+                WeatherReport weathers = WeatherIntegrationTest.this.weatherManClient.getWeatherReport(lat, lon);
                 System.out.println("!!Received Weather report lat:" + lat + ", lon:" + lon + " size:" + weathers.getSourceMap().size());
                 // assertEquals("Invalid region", 1, region);
             } catch (Exception ex) {

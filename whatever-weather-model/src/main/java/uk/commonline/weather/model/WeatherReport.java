@@ -28,6 +28,8 @@ public class WeatherReport implements Serializable {
 
     public class WeatherSourceData {
 
+        private int status = 0;
+        
         private List<WeatherForecast> forecasts = new ArrayList<WeatherForecast>();
 
         private List<Weather> recordings = new ArrayList<Weather>();
@@ -47,6 +49,15 @@ public class WeatherReport implements Serializable {
         public void setRecordings(List<Weather> recordings) {
             this.recordings = recordings;
         }
+
+        public int getStatus() {
+            return status;
+        }
+
+        public void setStatus(int status) {
+            this.status = status;
+        }
+        
 
     }
 

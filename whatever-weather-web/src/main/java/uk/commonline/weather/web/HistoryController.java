@@ -41,8 +41,8 @@ public class HistoryController {
         String longitude = request.getParameter("longitude");
 
         List<Weather> weathers;
-        WeatherReport weatherReport = weatherManClient.updateWeather(Long.parseLong(latitude), Long.parseLong(longitude));
-        WeatherReport report = weatherManClient.updateWeather(Double.parseDouble(latitude), Double.parseDouble(longitude));
+        WeatherReport weatherReport = weatherManClient.getWeatherReport(Long.parseLong(latitude), Long.parseLong(longitude));
+        WeatherReport report = weatherManClient.getWeatherReport(Double.parseDouble(latitude), Double.parseDouble(longitude));
         Double latValue = 0.0, longValue = 0.0;
         try {
             latValue = Double.parseDouble(latitude);

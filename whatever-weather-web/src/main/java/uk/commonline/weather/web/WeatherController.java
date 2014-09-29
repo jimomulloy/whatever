@@ -29,7 +29,7 @@ public class WeatherController {
 
         String latitude = request.getParameter("latitude");
         String longitude = request.getParameter("longitude");
-        WeatherReport report = weatherManClient.updateWeather(Double.parseDouble(latitude), Double.parseDouble(longitude));
+        WeatherReport report = weatherManClient.getWeatherReport(Double.parseDouble(latitude), Double.parseDouble(longitude));
         Double latValue = 0.0, longValue = 0.0;
         try {
             latValue = Double.parseDouble(latitude);
