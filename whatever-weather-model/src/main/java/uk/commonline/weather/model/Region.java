@@ -6,9 +6,6 @@ public class Region {
     public double latitude;
     public long region;
 
-    public Region() {
-    }
-
     @Override
     public String toString() {
         return "Region [longitude=" + longitude + ", latitude=" + latitude + ", region=" + region + "]";
