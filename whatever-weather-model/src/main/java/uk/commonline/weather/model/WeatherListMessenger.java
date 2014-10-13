@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.lang.annotation.Annotation;
+import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Date;
 import java.util.List;
@@ -66,15 +67,38 @@ public class WeatherListMessenger implements MessageBodyWriter<List<Weather>>, M
     public long getSize(List<Weather> t, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
         return -1;
     }
-
+    
     @Override
     public boolean isReadable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
-        return true;
+        boolean isReadable;
+        if (List.class.isAssignableFrom(type)
+            && genericType instanceof ParameterizedType) {
+          ParameterizedType parameterizedType = (ParameterizedType) genericType;
+          Type[] actualTypeArgs = (parameterizedType.getActualTypeArguments());
+          isReadable = (actualTypeArgs.length == 1 && actualTypeArgs[0]
+              .equals(Weather.class));
+        } else {
+          isReadable = false;
+        }
+
+        return isReadable;
     }
 
     @Override
     public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
-        return true;
+        // Ensure that we're handling only List<GPSTrackerCollection> objects.
+        boolean isWritable;
+        if (List.class.isAssignableFrom(type)
+            && genericType instanceof ParameterizedType) {
+          ParameterizedType parameterizedType = (ParameterizedType) genericType;
+          Type[] actualTypeArgs = (parameterizedType.getActualTypeArguments());
+          isWritable = (actualTypeArgs.length == 1 && actualTypeArgs[0]
+              .equals(Weather.class));
+        } else {
+          isWritable = false;
+        }
+
+        return isWritable;
     }
 
     @Override

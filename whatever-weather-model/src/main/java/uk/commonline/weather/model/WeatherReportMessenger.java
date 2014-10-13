@@ -67,12 +67,12 @@ public class WeatherReportMessenger implements MessageBodyWriter<WeatherReport>,
 
     @Override
     public boolean isReadable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
-        return true;
+        return type == WeatherReport.class;
     }
 
     @Override
     public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
-        return true;
+        return type == WeatherReport.class;
     }
 
     @Override
