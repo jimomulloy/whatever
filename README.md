@@ -1,17 +1,27 @@
-# Whatever The Weather Demo Application
-
-##Comments based on http://spring-petclinic.cloudfoundry.com/
+whatever
+========
+Whatever The Weather (WTW) - core system platform components.
 
 ##What is it
-A demo application supporting a variety of cloud based weather services.
+A multi-module maven project containing the core project libraries for "Whatever The Weather (WTW)" - an SOA based which demo application system provides a variety of cloud based weather data analysis services.
 
 ##Why
-As a calling card to support furutre job applications and as an exercise in exploring and learning about a variety of service oriented application design principles.
+As a calling card to support future job applications and as a workbench to explore and learn about a variety of service oriented application design principles.
 
 ##Based on
 1. The Weather app used in Maven: The Definitive Guide (OReilly)
 2. The CI examples in Jenkins: The Definitive Guide (OReilly)
 3. ....
+
+##Component modules
+1. whatever-utils: Common system utilities. 
+2. whatever-common: Common system library.
+3. whatever-data-model: Core data model code.
+4. whatever-data-access: Core data access code.
+5. whatever-data-service: Core data access code.
+6. whatever-data-client: Core data access client code.
+7. whatever-weather-model: Whatever The Weather (WTW) application system wide Canonical Data Model. 
+8. whatever-weather-persist: Whatever The Weather (WTW) application system wide DAO API. 
 
 ##Architectural principles
 1. Modularity.
@@ -27,38 +37,6 @@ As a calling card to support furutre job applications and as an exercise in expl
 11. Architect for OSGi.
 
 ## What does it look like?
-wtw will be deployed here on aws: http://54.72.213.202:8080/wtw
-
-## Running wtw locally
-```
-	git clone https://github.com/jimomulloy/whatever.git
-	mvn jersey:run
-```
-
-You can then access wtw here: http://localhost:8080/wtw/
-
-## Working with WTW in Eclipse/STS
-
-### prerequisites
-The following items should be installed in your system:
-* Maven 3 (http://www.sonatype.com/books/mvnref-book/reference/installation.html)
-* git command line tool (https://help.github.com/articles/set-up-git)
-* Eclipse with the m2e plugin (m2e is installed by default when using the STS (http://www.springsource.org/sts) distribution of Eclipse)
-
-Note: when m2e is available, there is an m2 icon in Help -> About dialog.
-If m2e is not there, just follow the install process here: http://eclipse.org/m2e/download/
+wtw will be deployed on linode with UI currently prototyping on www.jimomulloy.co.uk:4000
 
 
-### Steps:
-
-In the command line
-```
-git clone https://github.com/jimomulloy/whatever.git
-```
-Inside Eclipse: 
-```
-File -> Import -> Maven -> Existing Maven project
-```
-
-
-## Looking for something in particular?

@@ -137,13 +137,9 @@
 		<module>whatever-data-client</module>
 		<module>whatever-weather-build</module>
 		<module>whatever-weather-model</module>
-		<module>whatever-weather-service</module>
 		<module>whatever-weather-persist</module>
-		<!--module>whatever-weather-service-yahoo</module-->
-		<!--module>whatever-weather-command</module -->
 		<!-- module>whatever-weather-web</module -->
 		<module>whatever-weather-deploy</module>
-		<!--module>whatever-backbone</module -->
 	</modules>
 
 	<reporting>

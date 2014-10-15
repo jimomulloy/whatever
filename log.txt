@@ -1,71 +1,0 @@
-[INFO] Scanning for projects...
-[WARNING] 
-[WARNING] Some problems were encountered while building the effective model for uk.commonline.whatever:whatever-weather-service-yahoo:jar:2.0.0-SNAPSHOT
-[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: dom4j:dom4j:jar -> duplicate declaration of version 1.6.1 @ line 90, column 15
-[WARNING] 
-[WARNING] Some problems were encountered while building the effective model for uk.commonline.whatever:whatever-weather-webapp:war:2.0.0-SNAPSHOT
-[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: javax.servlet:jstl:jar -> duplicate declaration of version (?) @ line 77, column 15
-[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: javax.servlet.jsp:jsp-api:jar -> duplicate declaration of version (?) @ line 97, column 15
-[WARNING] 
-[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
-[WARNING] 
-[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
-[WARNING] 
-[INFO] ------------------------------------------------------------------------
-[INFO] Reactor Build Order:
-[INFO] 
-[INFO] Whatever Parent Project
-[INFO] Whatever - Utilities
-[INFO] Whatever - Common code
-[INFO] Whatever - Data Access API
-[INFO] Whatever -  Data Model
-[INFO] Whatever Weather -  Object Model
-[INFO] Whatever Weather -  Weather Service API
-[INFO] Whatever Weather -  Persistence API
-[INFO] Whatever Weather - JPA Persistence API
-[INFO] Whatever Weather -  Yahoo Weather Service
-[INFO] Whatever Weather -  Command Line Tool
-[INFO] Whatever Weather -  Web Application
-Downloading: https://repository-commonline.forge.cloudbees.com/release/org/easyb/maven-easyb-plugin/1.5/maven-easyb-plugin-1.5.pom
-[WARNING] The POM for org.easyb:maven-easyb-plugin:jar:1.5 is missing, no dependency information available
-[WARNING] Failed to retrieve plugin descriptor for org.easyb:maven-easyb-plugin:1.5: Plugin org.easyb:maven-easyb-plugin:1.5 or one of its dependencies could not be resolved: Failed to read artifact descriptor for org.easyb:maven-easyb-plugin:jar:1.5
-Downloading: https://repository-commonline.forge.cloudbees.com/release/org/eclipse/m2e/lifecycle-mapping/1.0.0/lifecycle-mapping-1.0.0.pom
-[WARNING] The POM for org.eclipse.m2e:lifecycle-mapping:jar:1.0.0 is missing, no dependency information available
-[WARNING] Failed to retrieve plugin descriptor for org.eclipse.m2e:lifecycle-mapping:1.0.0: Plugin org.eclipse.m2e:lifecycle-mapping:1.0.0 or one of its dependencies could not be resolved: Failed to read artifact descriptor for org.eclipse.m2e:lifecycle-mapping:jar:1.0.0
-Downloading: https://repository-commonline.forge.cloudbees.com/snapshot/org/apache/maven/plugins/maven-metadata.xml
-Downloading: https://repository-commonline.forge.cloudbees.com/snapshot/org/codehaus/mojo/maven-metadata.xml
-Downloading: https://repository-commonline.forge.cloudbees.com/release/org/codehaus/mojo/maven-metadata.xml
-Downloading: https://repository-commonline.forge.cloudbees.com/release/org/apache/maven/plugins/maven-metadata.xml
-Downloading: http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-metadata.xml
-Downloading: http://repo.maven.apache.org/maven2/org/codehaus/mojo/maven-metadata.xml
-4/22 KB   4/13 KB   4/22 KB   4/13 KB   4/22 KB   8/13 KB   8/22 KB   8/13 KB   8/22 KB   12/13 KB   12/22 KB   12/13 KB   12/22 KB   13/13 KB   14/22 KB   13/13 KB   15/22 KB   13/13 KB   19/22 KB   13/13 KB   22/22 KB   13/13 KB                         Downloaded: http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-metadata.xml (13 KB at 164.1 KB/sec)
-                      Downloaded: http://repo.maven.apache.org/maven2/org/codehaus/mojo/maven-metadata.xml (22 KB at 249.1 KB/sec)
-[INFO] ------------------------------------------------------------------------
-[INFO] Reactor Summary:
-[INFO] 
-[INFO] Whatever Parent Project ........................... SKIPPED
-[INFO] Whatever - Utilities .............................. SKIPPED
-[INFO] Whatever - Common code ............................ SKIPPED
-[INFO] Whatever - Data Access API ........................ SKIPPED
-[INFO] Whatever -  Data Model ............................ SKIPPED
-[INFO] Whatever Weather -  Object Model .................. SKIPPED
-[INFO] Whatever Weather -  Weather Service API ........... SKIPPED
-[INFO] Whatever Weather -  Persistence API ............... SKIPPED
-[INFO] Whatever Weather - JPA Persistence API ............ SKIPPED
-[INFO] Whatever Weather -  Yahoo Weather Service ......... SKIPPED
-[INFO] Whatever Weather -  Command Line Tool ............. SKIPPED
-[INFO] Whatever Weather -  Web Application ............... SKIPPED
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD FAILURE
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time: 3.349s
-[INFO] Finished at: Mon May 05 13:01:05 BST 2014
-[INFO] Final Memory: 15M/213M
-[INFO] ------------------------------------------------------------------------
-[ERROR] No plugin found for prefix 'jetty' in the current project and in the plugin groups [org.apache.maven.plugins, org.codehaus.mojo] available from the repositories [local (/home/jim/.m2/repository), cloudbees-private-release-plugin-repository (https://repository-commonline.forge.cloudbees.com/release), cloudbees-private-snapshot-plugin-repository (https://repository-commonline.forge.cloudbees.com/snapshot), central (http://repo.maven.apache.org/maven2)] -> [Help 1]
-[ERROR] 
-[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
-[ERROR] Re-run Maven using the -X switch to enable full debug logging.
-[ERROR] 
-[ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/NoPluginFoundForPrefixException
