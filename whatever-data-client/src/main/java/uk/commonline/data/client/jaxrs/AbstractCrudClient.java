@@ -26,7 +26,7 @@ public abstract class AbstractCrudClient<T extends EI> extends AbstractDataClien
 
     @Override
     public T create(T t) {
-        T o = getRestClient().getClient().target(getRestClient().createUrl("http://localhost:8080/wtwbase/webresources/")).path(getPath()).request()
+        T o = getRestClient().getClient().target(getRestClient().createUrl(getPath())).request()
                 .put(Entity.entity(t, MediaType.APPLICATION_JSON), eiClass);
         return o;
     }
@@ -43,8 +43,7 @@ public abstract class AbstractCrudClient<T extends EI> extends AbstractDataClien
 
     @Override
     public void deleteById(Long id) {
-        getRestClient().getClient().target(getRestClient().createUrl("http://localhost:8080/wtwbase/webresources/")).path(getPath()).path("/{id}")
-                .resolveTemplate("id", id).request().delete();
+        getRestClient().getClient().target(getRestClient().createUrl(getPath())).path("/{id}").resolveTemplate("id", id).request().delete();
     }
 
     @Override
@@ -55,8 +54,8 @@ public abstract class AbstractCrudClient<T extends EI> extends AbstractDataClien
 
     @Override
     public T get(Long id) {
-        T o = getRestClient().getClient().target(getRestClient().createUrl("http://localhost:8080/wtwbase/webresources/")).path(getPath())
-                .path("/{id}").resolveTemplate("id", id).request(MediaType.APPLICATION_JSON).get(eiClass);
+        T o = getRestClient().getClient().target(getRestClient().createUrl(getPath())).path("/{id}").resolveTemplate("id", id)
+                .request(MediaType.APPLICATION_JSON).get(eiClass);
         if (o == null) {
             o = newCiInstance();
         }
@@ -69,8 +68,7 @@ public abstract class AbstractCrudClient<T extends EI> extends AbstractDataClien
         GenericType<List<T>> list = new GenericType<List<T>>() {
         };
 
-        List<T> entities = getRestClient().getClient().target(getRestClient().createUrl("http://localhost:8080/wtwbase/webresources/"))
-                .path(getPath()).request(MediaType.APPLICATION_JSON).get(list);
+        List<T> entities = getRestClient().getClient().target(getRestClient().createUrl(getPath())).request(MediaType.APPLICATION_JSON).get(list);
         return entities;
     }
 
@@ -78,7 +76,7 @@ public abstract class AbstractCrudClient<T extends EI> extends AbstractDataClien
         return eiClass;
     };
 
-    abstract protected String getPath();;
+    abstract protected String getPath();
 
     public RestClient getRestClient() {
         return restClient;
@@ -110,8 +108,7 @@ public abstract class AbstractCrudClient<T extends EI> extends AbstractDataClien
 
     @Override
     public T update(T t) {
-        WebTarget target = getRestClient().getClient().target(getRestClient().createUrl("http://localhost:8080/wtwbase/webresources/"))
-                .path(getPath());
+        WebTarget target = getRestClient().getClient().target(getRestClient().createUrl(getPath()));
         T o = target.request().post(Entity.entity(t, MediaType.APPLICATION_JSON), eiClass);
         return o;
     }

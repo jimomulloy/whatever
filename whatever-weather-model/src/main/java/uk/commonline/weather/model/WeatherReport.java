@@ -29,7 +29,7 @@ public class WeatherReport implements Serializable {
     public class WeatherSourceData {
 
         private int status = 0;
-        
+
         private List<WeatherForecast> forecasts = new ArrayList<WeatherForecast>();
 
         private List<Weather> recordings = new ArrayList<Weather>();
@@ -57,7 +57,6 @@ public class WeatherReport implements Serializable {
         public void setStatus(int status) {
             this.status = status;
         }
-        
 
     }
 
@@ -128,17 +127,14 @@ public class WeatherReport implements Serializable {
                 cal.setTime(date);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
                 int hour = cal.get(Calendar.HOUR);
-                System.out.println("!!Got recording:" + entry.getKey() + ", writeDay:" + day + ", writeHour:" + hour);
                 if (date.getTime() >= yesterday) {
                     if (hour != lastWriteHour) {
                         ws.add(w);
                         lastWriteHour = hour;
-                        System.out.println("!!Add hourly recording:" + entry.getKey() + ", writeDay:" + day + ", writeHour:" + hour);
                     }
                 } else if (day != lastWriteDay) {
                     ws.add(w);
                     lastWriteDay = day;
-                    System.out.println("!!Add daily recording:" + entry.getKey() + ", writeDay:" + day + ", writeHour:" + hour);
                 }
             }
 
@@ -152,16 +148,13 @@ public class WeatherReport implements Serializable {
                 Date dateFrom = f.getPeriodFrom();
                 cal.setTime(dateFrom);
                 int dayFrom = cal.get(Calendar.DAY_OF_MONTH);
-                System.out.println("!!Got forecast:" + entry.getKey() + ", writeDay:" + day + ", dayfrom:" + dayFrom);
                 if (day != lastWriteDay) {
                     fs.add(f);
-                    System.out.println("!!Add first day forecast:" + entry.getKey() + ", writeDay:" + day + ", dayfrom:" + dayFrom);
                     lastWriteDay = day;
                     dayFromSet = new HashSet<Integer>();
                 } else {
                     if (!dayFromSet.contains(dayFrom)) {
                         fs.add(f);
-                        System.out.println("!!Add next day forecast:" + entry.getKey() + ", writeDay:" + day + ", dayfrom:" + dayFrom);
                         dayFromSet.add(dayFrom);
                     }
                 }

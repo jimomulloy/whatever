@@ -22,11 +22,6 @@ import uk.commonline.data.model.BaseEntity;
 @Table(name = "WEATHER")
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-// @NamedQueries({ @NamedQuery(name = "Weather.byRegion", query =
-// "from Weather w where w.region = :region and w.writeTime >= :fromTime and not exists (from WeatherForecast wf where wf.id = w.id) "),
-// @NamedQuery(name = "Weather.range", query =
-// "from Weather w where w.region = :region and w.writeTime >= :fromTime and not exists (from WeatherForecast wf where wf.id = w.id) "
-// )})
 @NamedQueries({
         @NamedQuery(name = "Weather.byRegion", query = "from Weather w where w.region = :region and w.writeTime >= :fromTime and w.forecast = false"),
         @NamedQuery(name = "Weather.range", query = "from Weather w where w.region = :region and w.writeTime >= :fromTime and w.writeTime <= :toTime and w.forecast = false") })

@@ -8,10 +8,20 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 
 public class RestClient {
 
-    // final Logger logger = LoggerFactory.getLogger(getClass());
+    public String getUrl() {
+        if(url == null || url.isEmpty()){
+            return "http://localhost:8080";
+        }
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     private ClientConfig cc;
     private Client client;
+    private String url;
 
     public RestClient() {
         this.cc = new ClientConfig();
@@ -24,12 +34,9 @@ public class RestClient {
      */
     public String createUrl(String uri) {
         StringBuilder sb = new StringBuilder();
-
-        // sb.append(clientProperties.getUrl());
-        // sb.append(clientProperties.getApiPath());
+        sb.append(getUrl());
+        sb.append("/");
         sb.append(uri);
-
-        // logger.debug("URL is '{}'.", sb.toString());
 
         return sb.toString();
     }

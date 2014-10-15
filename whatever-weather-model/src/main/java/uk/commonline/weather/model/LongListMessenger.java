@@ -67,7 +67,7 @@ public class LongListMessenger implements MessageBodyWriter<List<Long>>, Message
     public long getSize(List<Long> t, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
         return -1;
     }
-
+    
     @Override
     public boolean isReadable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
         boolean isReadable;
@@ -112,8 +112,8 @@ public class LongListMessenger implements MessageBodyWriter<List<Long>>, Message
             } else {
                 jsonType = genericType;
             }
-            List<Long> longs = getGson().fromJson(streamReader, jsonType);
-            return longs;
+            List<Long> data = getGson().fromJson(streamReader, jsonType);
+            return data;
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
@@ -133,7 +133,6 @@ public class LongListMessenger implements MessageBodyWriter<List<Long>>, Message
             } else {
                 jsonType = genericType;
             }
-
             getGson().toJson(t, jsonType, writer);
 
         } finally {
