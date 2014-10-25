@@ -26,7 +26,7 @@ public class WeatherReport implements Serializable {
         }
     }
 
-    public class WeatherSourceData {
+    public class WeatherSourceData implements Serializable {
 
         private int status = 0;
 
