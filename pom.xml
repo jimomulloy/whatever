@@ -1460,7 +1460,7 @@
 					</plugin>
 
 					<!-- CHECKSTYLE -->
-					<plugin>
+					<!--plugin>
 						<artifactId>maven-checkstyle-plugin</artifactId>
 						<version>2.9.1</version>
 						<dependencies>
@@ -1473,7 +1473,7 @@
 						<configuration>
 							<configLocation>custom-checkstyle.xml</configLocation>
 						</configuration>
-					</plugin>
+					</plugin-->
 
 					<!-- PMD -->
 					<plugin>
@@ -1568,13 +1568,13 @@
 								</plugin>
 
 								<!-- CHECKSTYLE -->
-								<plugin>
+								<!--plugin>
 									<artifactId>maven-checkstyle-plugin</artifactId>
 									<version>2.9.1</version>
 									<configuration>
 										<configLocation>custom-checkstyle.xml</configLocation>
 									</configuration>
-								</plugin>
+								</plugin-->
 
 								<!-- PMD -->
 								<plugin>
