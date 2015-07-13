@@ -127,13 +127,13 @@
 	</developers>
 
 	<modules>
+		<module>whatever-weather-build</module>
 		<module>whatever-utils</module>
 		<module>whatever-common</module>
 		<module>whatever-data-model</module>
 		<module>whatever-data-access</module>
 		<module>whatever-data-service</module>
 		<module>whatever-data-client</module>
-		<module>whatever-weather-build</module>
 		<module>whatever-weather-model</module>
 		<module>whatever-weather-persist</module>
 		<!-- module>whatever-weather-web</module -->
